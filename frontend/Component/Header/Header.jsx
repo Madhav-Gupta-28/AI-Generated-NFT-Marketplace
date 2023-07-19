@@ -11,26 +11,26 @@ const Header = () => {
   return (
     <>
 
-    <Flex minWidth='max-content' alignItems='center' p={4} gap='2' style={{backgroundColor:"#f5f4e4"}}>
+    <Flex minWidth='max-content' alignItems='around' p={4} gap='2' >
     <Box p='2'>
-      <Heading size='xl' style={{color:"#00000087" , fontWeight:'800'}} >AIFT</Heading>
+      <Heading size='md' style={{ fontWeight:'700' , padding : "1rem 2rem" , border:'2px solid #ff8700'}} >AIFT Marketplace</Heading>
     </Box>
-    <Spacer />
+    {/* <Spacer /> */}
    <HStack>
    <Menu>
-          <MenuButton className={Style.a}  fontWeight="500" fontSize="lg" _hover={{ textDecoration: 'underline' , cursor:'pointer'}}>
+   <MenuButton style={{marginLeft:'2rem' , padding:'0.5rem 1rem'}} className={Style.a} fontWeight="500" fontSize="lg" _hover={{ textDecoration: 'underline' , cursor:'pointer'}}>
           Navigation
-          </MenuButton>
-          <MenuList>
-            <MenuItem style={{fontSize:'1.2rem' , color:"#454545"}}><Link  href={'/mintNFT'} >Mint AIFT</Link></MenuItem>
-            <MenuItem style={{fontSize:'1.2rem' , color:"#454545"}}><Link  href={'/creatorDashboard'}></Link>Creator Dashboard</MenuItem>
-            <MenuItem style={{fontSize:'1.2rem' , color:"#454545"}}><Link  href={"/"}>Marketplace</Link></MenuItem>
-            <MenuItem style={{fontSize:'1.2rem' , color:"#454545"}}><Link  href={"/portfolio"}>Portfolio</Link></MenuItem>
+          </MenuButton >
+          <MenuList style={{backgroundColor:"#000"}}>
+            <MenuItem style={{fontSize:'1.2rem' , color:"#ff8700" , backgroundColor:"#000"}}><Link  href={'/mintNFT'} >Mint AIFT</Link></MenuItem>
+            <MenuItem style={{fontSize:'1.2rem' , color:"#ff8700" , backgroundColor:"#000"}}><Link  href={'/creatorDashboard'}></Link>Creator Dashboard</MenuItem>
+            <MenuItem style={{fontSize:'1.2rem' , color:"#ff8700" , backgroundColor:"#000"}}><Link  href={"/"}>Marketplace</Link></MenuItem>
+            <MenuItem style={{fontSize:'1.2rem' , color:"#ff8700" , backgroundColor:"#000"}}><Link  href={"/portfolio"}>Portfolio</Link></MenuItem>
           </MenuList>
         </Menu>
-    
-    <ConnectWallet/>
    </HStack>
+   <Spacer/>
+   <ConnectWallet/>
   </Flex>
 
 
