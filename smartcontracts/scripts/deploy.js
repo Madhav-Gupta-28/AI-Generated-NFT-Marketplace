@@ -3,7 +3,7 @@ const hre = require("hardhat");
 
 async function main() {
 
-  const AIFTMarketplace = await hre.ethers.deployContract("AIFTMarketplace");
+  const AIFTMarketplace = await hre.ethers.deployContract("AIFT");
 
   await AIFTMarketplace.waitForDeployment();
 
@@ -11,10 +11,6 @@ async function main() {
    `AIFTMArketplace  deployed to ${AIFTMarketplace.target}`
   );
 
-  const aift = await hre.ethers.deployContract("AIFT",["AI Generated NFT", "AIFT" ,  AIFTMarketplace.target]);
-
-  await aift.waitForDeployment();
-  console.log(`AIFT DEployed at ${aift.target}`)
 }
 
 

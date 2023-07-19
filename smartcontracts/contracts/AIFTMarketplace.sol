@@ -2,24 +2,22 @@
 
 pragma solidity ^0.8.4;
 
-
-
-import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
 
-contract AIFTMarketplace  is ReentrancyGuard { 
-
-    // using the Counters
+contract  AIFT is  ERC721URIStorage , ReentrancyGuard {
+    
+     // using the Counters
     using Counters for Counters.Counter;
-
-// defining some varibales
-    Counters.Counter private tokenId;
-    Counters.Counter private itemsSold;
+        
+    // defining some varibales
+    Counters.Counter private _tokenIds;
     address payable owner;
 
-    // some mapping
+      // some mapping
     mapping(uint256 => NFTTOKEN) public idToNFt;
     mapping(address => uint256[]) public addressToid;
 
@@ -28,50 +26,46 @@ contract AIFTMarketplace  is ReentrancyGuard {
     struct NFTTOKEN{
         uint256 id;
         address payable owner;
-        address nftcontract;
         uint256 price;
         bool listed;
     }
 
-    constructor()  {
+    constructor( ) ERC721("AI Generated NFT ",  "AIFT") {
         owner = payable(msg.sender);
     }
 
+     function createNFT(string  memory tokenURI) nonReentrant  public   payable   returns(uint256)   {
 
-    // NFT Creation Event
-    event NFTTOKENCREATED(
-     uint256 id,
-        address payable owner,
-        address nftcontract,
-        uint256 price,
-        bool listed
-        );
+        _tokenIds.increment();
 
+        uint256 new_tokenId = _tokenIds.current();
 
+        // minting the nft to user
+        _safeMint(msg.sender, new_tokenId);
 
-    function createNFTItem(address nftcontractaddress , uint256 _tokenId , uint256 _price) public nonReentrant{
-
-        tokenId.increment();
-
-        uint256 itemId = tokenId.current();
-
-        idToNFt[itemId] = NFTTOKEN(
-            itemId,
+        //Map the tokenId to the tokenURI (which is an IPFS URL with the NFT metadata)
+        _setTokenURI(new_tokenId, tokenURI);
+        
+        idToNFt[new_tokenId] = NFTTOKEN(
+            new_tokenId,
             payable(msg.sender),
-            nftcontractaddress,
-            _price,
-            true
+            0,
+            false
         );
+        addressToid[msg.sender].push(new_tokenId);
+        return new_tokenId;
 
-        addressToid[msg.sender].push(itemId);
+    }
 
-        IERC721(nftcontractaddress).transferFrom(msg.sender , address(this),itemId);
 
-        emit NFTTOKENCREATED(itemId , 
-            payable(msg.sender),
-            nftcontractaddress,
-            _price,
-            true);
+    function listNFTForSale(uint256 id , uint256 _price) nonReentrant  public  {
+        require(idToNFt[id].owner == payable(msg.sender));
+        require(idToNFt[id].listed == false);
+
+        idToNFt[id].price = _price;
+        idToNFt[id].listed = true;
+
+        _transfer(msg.sender, address(this), id);
 
     }
 
@@ -81,31 +75,39 @@ contract AIFTMarketplace  is ReentrancyGuard {
         require(idToNFt[_tokenId].owner == payable(msg.sender));
         require(idToNFt[_tokenId].listed == true);
 
-         idToNFt[_tokenId].price = _price;
+        idToNFt[_tokenId].price = _price;
 
     }
 
 
-    
-    function updateNFTListVar( uint256 _tokenId , bool _list) nonReentrant public{
-
+    function unListNFt( uint256 _tokenId ) nonReentrant public{
         require(idToNFt[_tokenId].owner == payable(msg.sender));
-         idToNFt[_tokenId].listed =  _list;
+        require(idToNFt[_tokenId].listed == true);
+         idToNFt[_tokenId].listed =  false;
+
+    }
+
+    function ListNFtAgain( uint256 _tokenId ) nonReentrant public{
+        require(idToNFt[_tokenId].owner == payable(msg.sender));
+        require(idToNFt[_tokenId].listed == false);
+         idToNFt[_tokenId].listed =  true;
 
     }
 
 
-    function sellNFT(address nftcontractaddress , uint256 _id) public payable nonReentrant  returns(bool){
+      function sellNFT( uint256 _id) public payable nonReentrant  returns(bool){
+    
+        require(idToNFt[_id].listed == true);
+        require(msg.value == idToNFt[_id].price);
 
-    require(idToNFt[_id].owner == payable(address(this)));
-    require(idToNFt[_id].listed == true);
-    require(msg.value == idToNFt[_id].price);
+        require(ownerOf(_id) == address(this), "Not listed for sale ");
+        
 
     // we are cutting 1% of transaction fee
     uint256 finalPrice = idToNFt[_id].price - ((2 * idToNFt[_id].price) / 100);
 
     idToNFt[_id].owner.transfer(finalPrice);
-    IERC721(nftcontractaddress).transferFrom(address(this),msg.sender,_id);
+   _transfer(address(this), msg.sender, _id);
 
     idToNFt[_id].owner = payable(msg.sender);
     idToNFt[_id].listed = false;
@@ -114,9 +116,12 @@ contract AIFTMarketplace  is ReentrancyGuard {
     }
 
 
-    // fetching all the nfts of a user
+
+    // fetching data functions
+
+     // fetching all the nfts of a user
     function fetchMYNFTs(address  _address) public view returns(NFTTOKEN[] memory){
-        uint256 nftcount = tokenId.current();
+        uint256 nftcount = _tokenIds.current();
         uint256 currentIndex = 0;
 
         NFTTOKEN[] memory nfts = new NFTTOKEN[](nftcount);
@@ -133,9 +138,10 @@ contract AIFTMarketplace  is ReentrancyGuard {
         return nfts;
     }
 
+
 // fetching only  the listed  nfts of a user
       function fetchMYListedNFTs(address  _address) public view returns(NFTTOKEN[] memory){
-        uint256 nftcount = tokenId.current();
+        uint256 nftcount = _tokenIds.current();
         uint256 currentIndex = 0;
 
         NFTTOKEN[] memory nfts = new NFTTOKEN[](nftcount);
@@ -153,10 +159,9 @@ contract AIFTMarketplace  is ReentrancyGuard {
     }
 
 
-
         // fetching all nfts data
     function fetchALLNFTs() public view returns(NFTTOKEN[] memory){
-        uint256 nftcount = tokenId.current();
+        uint256 nftcount = _tokenIds.current();
         uint256 currentIndex = 0;
 
         NFTTOKEN[] memory nfts = new NFTTOKEN[](nftcount);
@@ -171,10 +176,9 @@ contract AIFTMarketplace  is ReentrancyGuard {
         return nfts;
     }
 
-
     // fetching only  the listed  nfts 
       function fetchListedNFTs() public view returns(NFTTOKEN[] memory){
-        uint256 nftcount = tokenId.current();
+        uint256 nftcount = _tokenIds.current();
         uint256 currentIndex = 0;
 
         NFTTOKEN[] memory nfts = new NFTTOKEN[](nftcount);
@@ -192,10 +196,11 @@ contract AIFTMarketplace  is ReentrancyGuard {
     }
 
 
-        /// interface Contract 
+           /// interface Contract 
     function getNFTInfobyId(uint256 id_) public  view returns(NFTTOKEN memory){
         return idToNFt[id_];
     }
+
 
 
 
@@ -210,7 +215,6 @@ contract AIFTMarketplace  is ReentrancyGuard {
 
         require(success,"Trabsfer Failed");
     }
-
 
 
 

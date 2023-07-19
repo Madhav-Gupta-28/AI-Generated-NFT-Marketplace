@@ -8,7 +8,7 @@ module.exports = {
 
   networks:{
     mumbai: {
-      url: "https://polygon-mumbai.g.alchemy.com/v2/9Nw1K0EmuEt0TOuhcAAXGwsoW13OJVNh",
+      url: "https://sepolia.infura.io/v3/d7b8935dabac4bb384fd944373b01f3d",
       accounts: ["edd0a374fb70992c742af5ff48618adf91eb6f97656be5ed122a6fc0ff3aed3e"],
       gas: "auto",
       gasPrice: 8000000000000,
