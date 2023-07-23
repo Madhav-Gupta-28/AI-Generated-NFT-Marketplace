@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 *{
-    background-color: #000;
     color: #ff8700;
 }
 

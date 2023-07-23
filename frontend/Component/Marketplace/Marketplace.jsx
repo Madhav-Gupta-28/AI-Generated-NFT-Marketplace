@@ -41,7 +41,7 @@ const Marketplace = () => {
     
 
   return (
-    <div>Marketplace</div>
+    <div style={{backgroundColor:"#000" , color:"#ff8700"}} >Marketplace</div>
   )
 }
 

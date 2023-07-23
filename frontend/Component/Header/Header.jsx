@@ -11,7 +11,7 @@ const Header = () => {
   return (
     <>
 
-    <Flex minWidth='max-content' alignItems='around' p={4} gap='2' >
+    <Flex minWidth='max-content' alignItems='around' p={4} gap='2'  style={{backgroundColor:"#000" , color:"#ff8700"}} >
     <Box p='2'>
       <Heading size='md' style={{ fontWeight:'700' , padding : "1rem 2rem" , border:'2px solid #ff8700'}} >AIFT Marketplace</Heading>
     </Box>

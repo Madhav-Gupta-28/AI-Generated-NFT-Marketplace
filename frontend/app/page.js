@@ -9,10 +9,6 @@ import {aiftAddress  , marketplaceAddress , aiftabi , marketplaceabi} from "../c
 
 
 const Home = () => {
-
-
-
-
   return (
     <>
   <ChakraProvider>
