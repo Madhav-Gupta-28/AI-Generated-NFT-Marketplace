@@ -25,6 +25,7 @@ contract  AIFT is  ERC721URIStorage , ReentrancyGuard {
     // NFTTOKEN struct
     struct NFTTOKEN{
         uint256 id;
+        string tokenURI;
         address payable owner;
         uint256 price;
         bool listed;
@@ -48,6 +49,7 @@ contract  AIFT is  ERC721URIStorage , ReentrancyGuard {
         
         idToNFt[new_tokenId] = NFTTOKEN(
             new_tokenId,
+            tokenURI,
             payable(msg.sender),
             0,
             false
