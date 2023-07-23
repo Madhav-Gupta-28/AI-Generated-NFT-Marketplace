@@ -1,4 +1,4 @@
-export const aiftAddress = "0xB6233d21d0cC6E74341e80De2c586Ac8D32426f7"
+export const aiftAddress = "0x33ACfDdd0291B5e3B267C0fD5eD559959FD5528B"
 
 export const aiftabi =  [
 	{
@@ -393,6 +393,11 @@ export const aiftabi =  [
 						"type": "uint256"
 					},
 					{
+						"internalType": "string",
+						"name": "tokenURI",
+						"type": "string"
+					},
+					{
 						"internalType": "address payable",
 						"name": "owner",
 						"type": "address"
@@ -426,6 +431,11 @@ export const aiftabi =  [
 						"internalType": "uint256",
 						"name": "id",
 						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "tokenURI",
+						"type": "string"
 					},
 					{
 						"internalType": "address payable",
@@ -469,6 +479,11 @@ export const aiftabi =  [
 						"type": "uint256"
 					},
 					{
+						"internalType": "string",
+						"name": "tokenURI",
+						"type": "string"
+					},
+					{
 						"internalType": "address payable",
 						"name": "owner",
 						"type": "address"
@@ -508,6 +523,11 @@ export const aiftabi =  [
 						"internalType": "uint256",
 						"name": "id",
 						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "tokenURI",
+						"type": "string"
 					},
 					{
 						"internalType": "address payable",
@@ -570,6 +590,11 @@ export const aiftabi =  [
 						"type": "uint256"
 					},
 					{
+						"internalType": "string",
+						"name": "tokenURI",
+						"type": "string"
+					},
+					{
 						"internalType": "address payable",
 						"name": "owner",
 						"type": "address"
@@ -607,6 +632,11 @@ export const aiftabi =  [
 				"internalType": "uint256",
 				"name": "id",
 				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "tokenURI",
+				"type": "string"
 			},
 			{
 				"internalType": "address payable",
