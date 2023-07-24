@@ -27,6 +27,7 @@ const SingleNFT = ({ params }) => {
     const [isClientMounted, setIsClientMounted] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [priceToList, setpriceTolist] = useState(0);
+    const [relist , setrelist] = useState(false)
   
     // function for getting the info for each NFT with tokenid
     const getNftInfo = async () => {
@@ -101,6 +102,43 @@ const SingleNFT = ({ params }) => {
       } 
     };
   
+    const onReListButtonClick = async() =>{
+      try {
+        alert(priceToList);
+        
+        const provider = new ethers.providers.Web3Provider(window.ethereum)
+        const signer = provider.getSigner()
+        const aift = new ethers.Contract(aiftAddress, aiftabi, signer)
+        let finalPrice = ethers.utils.parseUnits(priceToList.toString(), 'ether')
+        const tx = await aift.updateNFTprice(params.id , finalPrice)
+        console.log(tx)
+
+        const txhash = tx.hash 
+
+        signer.provider.on(txhash, (receipt) => {
+            console.log('Transaction confirmed:', receipt);
+            setStatus('AIFT ReListed Succesfully')
+            setType('success')
+            setShowMetamaskAlert(true)
+          });
+   
+  
+        setTimeout(() => {
+          setStatus('')
+          setType('')
+          setShowMetamaskAlert(false)
+        }, 5000);
+      } catch (error) {
+        console.log(error)
+        setStatus('user rejected transaction')
+        setType('error')
+        setShowMetamaskAlert(true)
+  
+        setIsModalOpen(false);
+      } 
+
+    }
+
     useEffect(() => {
       setIsClientMounted(true);
       getNftInfo();
@@ -144,11 +182,12 @@ const SingleNFT = ({ params }) => {
                           </Link>
                         </Heading>
                         <Heading as="h6" m={'1'} size="md" color={'rgb(209 213 219)'}>
-                          <Text style={{ marginTop: '2rem 0 2rem 0 ', padding: "1rem", display: 'inline', fontWeight: '1000', color: "#fff" }}>   {name} </Text>
+                          <Text style={{ marginTop: '2rem 0 2rem 0 ', padding: "1rem", display: 'inline', fontWeight: '1000', color: "#ff8700" }}>   {name} </Text>
                         </Heading>
                         {isClientMounted && (
                           <p className='text-slate-300' fontWeight={'700'} m={'1'} fontSize={'xl'}>
-                            <Text style={{ display: 'inline', color: "#fff", fontWeight: '1000', padding: "1rem", marginTop: '2rem 0 2rem 0 ' }}>{description}</Text>
+
+                            <Text style={{ display: 'inline', color: "#ff8700", fontWeight: '1000', padding: "1rem", marginTop: '2rem 0 2rem 0 ' }}>{description}</Text>
                           </p>
                         )}
                         <p className='text-slate-300' fontSize="xl" style={{ color: "#ff8700", padding: "1rem", marginTop: '2rem 0 2rem 0 ' }} fontWeight={'400'} m={'1'}>
@@ -162,10 +201,18 @@ const SingleNFT = ({ params }) => {
                             {price} Matic
                           </Text>
                         ) : (
-                          <Button onClick={() => setIsModalOpen(true)} size='lg' colorScheme='orange' borderRadius={'4px'} variant={"solid"} fontWeight={'700'}>
+                          <Button onClick={() => { setIsModalOpen(true) , setrelist(false)}  } size='lg' colorScheme='orange' borderRadius={'4px'} variant={"solid"} fontWeight={'700'}>
                             List
                           </Button>
                         )}
+
+                        {isListed && price > 0 ? (
+                           <Button onClick={() =>{ setIsModalOpen(true) , setrelist(true)}  } size='lg' colorScheme='orange' borderRadius={'4px'} variant={"solid"} fontWeight={'700'}>
+                           ReList
+                         </Button>
+                        ):
+                         <div></div>
+                        }
                       </HStack>
                     </VStack>
                   </HStack>
@@ -174,7 +221,7 @@ const SingleNFT = ({ params }) => {
             )}
           </div>
   
-          <MyModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onListButtonClick={handleListNFT} setpriceTolist={setpriceTolist} />
+          <MyModal isReList={relist} isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onListButtonClick={handleListNFT} setpriceTolist={setpriceTolist} onReListButtonClick={onReListButtonClick} />
         </ChakraProvider>
       </ThirdwebProvider>
     );
@@ -182,7 +229,7 @@ const SingleNFT = ({ params }) => {
   
   export default SingleNFT;
   
-  const MyModal = ({ isOpen, onClose, onListButtonClick, setpriceTolist }) => {
+  const MyModal = ({ isReList, isOpen, onClose, onListButtonClick, setpriceTolist , onReListButtonClick }) => {
     const handleModalClick = (e) => {
       e.stopPropagation();
     };
@@ -212,7 +259,7 @@ const SingleNFT = ({ params }) => {
               onClick={handleModalClick}>
               <Text style={{ fontSize: '1.2rem', fontWeight: '700' }}>Enter the Price You want to List AIFT at:</Text>
               <Input type='number' required placeholder="Enter price..." onChange={(event) => setpriceTolist(event.target.value)} />
-              <Button onClick={onListButtonClick} colorScheme="orange" marginLeft="10px" style={{ margin: "1.2rem 0 10px 0 " }} size={'lg'}>
+              <Button onClick={ isReList ?  onReListButtonClick  : onListButtonClick} colorScheme="orange" marginLeft="10px" style={{ margin: "1.2rem 0 10px 0 " }} size={'lg'}>
                 List NFT
               </Button>
             </VStack>
