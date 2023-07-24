@@ -5,11 +5,10 @@ import Link from 'next/link';
 import { AiOutlineArrowUp } from 'react-icons/ai';
 import { ethers } from 'ethers';
 
-const NFTTile = ({ tokenURI, proposalid, listed, price }) => {
+const MarketplaceNFTTile = ({ tokenURI, proposalid, price }) => {
 
   const [name, setname] = useState();
   const [image, setimage] = useState('');
-  const [listedNFT , setlisted] = useState(false)
 
   useEffect(() => {
     const fetchMetadata = async () => {
@@ -28,13 +27,12 @@ const NFTTile = ({ tokenURI, proposalid, listed, price }) => {
       }
     }
     fetchMetadata();
-    setlisted(listed)
   }, [tokenURI]);
 
   return (
     <div className="m-3" key={tokenURI}>
   {tokenURI !== "" ? (
-    <Link href={`/profile/${proposalid.toString()}`} maxw="30" key={proposalid.toString()} p={'1rem'} m={'1rem'} >
+    <Link href={`/${proposalid.toString()}`} maxw="30" key={proposalid.toString()} p={'1rem'} m={'1rem'} >
       <img
         src={`${image.replace('ipfs://', 'https://nftstorage.link/ipfs/')}`}
         className="w-11/12 mx-auto rounded-2xl"
@@ -46,7 +44,7 @@ const NFTTile = ({ tokenURI, proposalid, listed, price }) => {
         alt={name}
       />
       <div style={{ padding:"0.8 rem" ,  fontSize:'1.2rem' , margin:"0.5rem 0 0 1rem" , color:"#fff"}} > <span style={{fontSize:'1.6rem' , marginRight:'0.4rem'}} >{`#${proposalid.toString()}`}</span>  {name}</div>
-      <div style={{ padding:"0.8 rem" ,  fontSize:'1.2rem' , margin:"0.5rem 0 1rem  1rem" , color:"#fff"}} >{listed ? `${ethers.utils.formatEther(price.toString())}  Matic`  : "Not Listed For Sale"} </div>
+      <div style={{ padding:"0.8 rem" ,  fontSize:'1.2rem' , margin:"0.5rem 0 1rem  1rem" , color:"#fff"}} >{`${ethers.utils.formatEther(price.toString())}  Matic`} </div>
     </Link>
    ) : 
     <div></div>
@@ -56,4 +54,4 @@ const NFTTile = ({ tokenURI, proposalid, listed, price }) => {
   )
 }
 
-export default NFTTile
+export default MarketplaceNFTTile

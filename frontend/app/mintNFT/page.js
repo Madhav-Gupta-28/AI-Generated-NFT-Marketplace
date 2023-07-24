@@ -125,7 +125,7 @@ const MintNFT = () => {
 
           const transactionHash = tx.hash;
           signer.provider.on(transactionHash, (receipt) => {
-            alert('Transaction confirmed:');
+            // alert('Transaction confirmed:');
           });
  
       }catch(error){
