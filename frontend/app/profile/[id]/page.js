@@ -85,13 +85,6 @@ const SingleNFT = ({ params }) => {
             setType('success')
             setShowMetamaskAlert(true)
           });
-   
-  
-        setTimeout(() => {
-          setStatus('')
-          setType('')
-          setShowMetamaskAlert(false)
-        }, 5000);
       } catch (error) {
         console.log(error)
         setStatus('user rejected transaction')
@@ -121,13 +114,7 @@ const SingleNFT = ({ params }) => {
             setType('success')
             setShowMetamaskAlert(true)
           });
-   
   
-        setTimeout(() => {
-          setStatus('')
-          setType('')
-          setShowMetamaskAlert(false)
-        }, 5000);
       } catch (error) {
         console.log(error)
         setStatus('user rejected transaction')
@@ -136,6 +123,34 @@ const SingleNFT = ({ params }) => {
   
         setIsModalOpen(false);
       } 
+
+    }
+
+
+    const unlistButtonHandler = async() =>{
+
+      try {
+        const provider = new ethers.providers.Web3Provider(window.ethereum)
+        const signer = provider.getSigner()
+        const aift = new ethers.Contract(aiftAddress, aiftabi, signer)
+        const tx = await aift.unListNFt(params.id)
+        console.log(tx)
+
+        const txhash = tx.hash 
+
+        signer.provider.on(txhash, (receipt) => {
+            console.log('Transaction confirmed:', receipt);
+            setStatus('AIFT UnListed Succesfully')
+            setType('success')
+            setShowMetamaskAlert(true)
+          });
+      } catch (error) {
+        console.log(error)
+        setStatus('user rejected transaction')
+        setType('error')
+        setShowMetamaskAlert(true)
+      } 
+
 
     }
 
@@ -207,8 +222,16 @@ const SingleNFT = ({ params }) => {
                         )}
 
                         {isListed && price > 0 ? (
-                           <Button onClick={() =>{ setIsModalOpen(true) , setrelist(true)}  } size='lg' colorScheme='orange' borderRadius={'4px'} variant={"solid"} fontWeight={'700'}>
+                           <Button onClick={() =>{ setIsModalOpen(true) , setrelist(true)}  } size='md' colorScheme='green' borderRadius={'4px'} variant={"solid"} fontWeight={'700'}>
                            ReList
+                         </Button>
+                        ):
+                         <div></div>
+                        }
+
+                          {isListed && price > 0 ? (
+                           <Button onClick={ unlistButtonHandler} size='md' colorScheme='red' borderRadius={'4px'} variant={"solid"} fontWeight={'700'}>
+                           UnList
                          </Button>
                         ):
                          <div></div>
