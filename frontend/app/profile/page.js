@@ -66,6 +66,9 @@ const Profile = () => {
               fontSize='2rem'
               color={"#ff8700"}
               padding={"0.4rem 0.8rem"}
+              border={"2px solid #ff8700"}
+              margin={'2rem 0 '}
+              
             >
              See Your AIFT
             </Heading>
@@ -84,9 +87,9 @@ const Profile = () => {
                 <div className="grid sm:grid-cols-2 w-fit md:grid-cols-3 lg:grid-cols-4 mx-auto pb-10 gap-6">
                 {nftArray.map((items) => {
                   return (
-                    <>
+                    <>   
                       {items.tokenURI && (
-                        <div className="col-span-1 w-72 rounded-3xl border-2 border-sky-800  pt-2.5 shadow-md hover:shadow-lg hover:shadow-black transition ease-in-out delay-150 shadow-black">
+                        <div className="col-span-1 w-72 rounded-3xl border-2 pt-2.5 shadow-md hover:shadow-lg hover:shadow-black transition ease-in-out delay-150 shadow-black"  style={{border:"2px solid #ff8700"}}>
                           <NFTTile tokenURI={items.tokenURI} proposalid={items.id.toString() } listed={items.listed} price={items.price.toString()} />
                         </div>
                       )}

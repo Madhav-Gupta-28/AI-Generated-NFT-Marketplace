@@ -71,7 +71,7 @@ const Marketplace = () => {
               return (
                 <>
                   {items.tokenURI && (
-                    <div className="col-span-1 w-72 rounded-3xl border-2 border-sky-800 bg-[#17173d] pt-2.5 shadow-md hover:shadow-lg hover:shadow-black transition ease-in-out delay-150 shadow-black">
+                    <div className="col-span-1 w-72 rounded-3xl border-2 pt-2.5 shadow-md hover:shadow-lg hover:shadow-black transition ease-in-out delay-150 shadow-black" style={{border:"2px solid #ff8700"}}>
                       <MarketplaceNFTTile tokenURI={items.tokenURI} proposalid={items.id.toString() } price={items.price.toString()} />
                     </div>
                   )}

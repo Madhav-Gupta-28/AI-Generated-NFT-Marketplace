@@ -32,7 +32,7 @@ const NFTTile = ({ tokenURI, proposalid, listed, price }) => {
   }, [tokenURI]);
 
   return (
-    <div className="m-3" key={tokenURI}>
+    <div className="m-3" key={tokenURI} style={{padding:'0 0.6rem'}} >
   {tokenURI !== "" ? (
     <Link href={`/profile/${proposalid.toString()}`} maxw="30" key={proposalid.toString()} p={'1rem'} m={'1rem'} >
       <img
@@ -45,8 +45,8 @@ const NFTTile = ({ tokenURI, proposalid, listed, price }) => {
         objectFit={"contain"}
         alt={name}
       />
-      <div style={{ padding:"0.8 rem" ,  fontSize:'1.2rem' , margin:"0.5rem 0 0 1rem" , color:"#fff"}} > <span style={{fontSize:'1.6rem' , marginRight:'0.4rem'}} >{`#${proposalid.toString()}`}</span>  {name}</div>
-      <div style={{ padding:"0.8 rem" ,  fontSize:'1.2rem' , margin:"0.5rem 0 1rem  1rem" , color:"#fff"}} >{listed ? `${ethers.utils.formatEther(price.toString())}  Matic`  : "Not Listed For Sale"} </div>
+      <div style={{ padding:"0.8 rem" ,  fontSize:'1.2rem' , margin:"0.5rem 0 0 1rem" , color:"#ff8700"}} > <span style={{fontSize:'1.6rem' , marginRight:'0.4rem'}} >{`#${proposalid.toString()}`}</span>  {name}</div>
+      <div style={{ padding:"0.8 rem" ,  fontSize:'1.2rem' , margin:"0.5rem 0 1rem  1rem" , color:"#ff8700"}} >{listed ? `${ethers.utils.formatEther(price.toString())}  Matic`  : "Not Listed For Sale"} </div>
     </Link>
    ) : 
     <div></div>

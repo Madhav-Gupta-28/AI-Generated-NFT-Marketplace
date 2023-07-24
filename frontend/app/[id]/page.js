@@ -135,16 +135,16 @@ const SingleNFT = ({ params }) => {
                           </Link>
                         </Heading>
                         <Heading as="h6" m={'1'} size="md" color={'rgb(209 213 219)'}>
-                          <Text style={{ marginTop: '2rem 0 2rem 0 ', padding: "1rem", display: 'inline', fontWeight: '1000', color: "#ff8700" }}>   {name} </Text>
+                          <Text style={{ marginTop: '2rem 0 2rem 0 ', padding: "1rem", display: 'inline', fontWeight: '1000', color: "#ff8700" }}> <span style={{color:"#fff"}}>Name:&nbsp;  </span>   {  name} </Text>
                         </Heading>
                         {isClientMounted && (
                           <p className='text-slate-300' fontWeight={'700'} m={'1'} fontSize={'xl'}>
 
-                            <Text style={{ display: 'inline', color: "#ff8700", fontWeight: '1000', padding: "1rem", marginTop: '2rem 0 2rem 0 ' }}>{description}</Text>
+                            <Text style={{  display: 'inline', color: "#ff8700", fontWeight: '1000', padding: "1rem", marginTop: '2rem 0 2rem 0 ' , fontSize:'1.2rem' }}>  <span style={{color:"#fff"}}>Description:&nbsp;  </span>  { description}</Text>
                           </p>
                         )}
                         <p className='text-slate-300' fontSize="xl" style={{ color: "#ff8700", padding: "1rem", marginTop: '2rem 0 2rem 0 ' }} fontWeight={'400'} m={'1'}>
-                          {owner}
+                         <span style={{color:"#fff"}}>Owner: </span> {owner}
                         </p>
                       </div>
                       <HStack>
