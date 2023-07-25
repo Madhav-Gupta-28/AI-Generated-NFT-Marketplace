@@ -62,12 +62,11 @@ const SingleNFT = ({ params }) => {
     
   
   
-    const onReListButtonClick = async() =>{
+    const sellButtonCLickhandler = async() =>{
       try {
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         const signer = provider.getSigner()
         const aift = new ethers.Contract(aiftAddress, aiftabi, signer)
-        let finalPrice = ethers.utils.parseUnits(priceToList.toString(), 'ether')
         const tx = await aift.sellNFT(params.id)
         console.log(tx)
 
@@ -82,7 +81,7 @@ const SingleNFT = ({ params }) => {
   
       } catch (error) {
         console.log(error)
-        setStatus('User Rejected Transaction')
+        setStatus(' Transaction Rejected')
         setType('error')
         setShowMetamaskAlert(true)
   
@@ -148,7 +147,7 @@ const SingleNFT = ({ params }) => {
                         </p>
                       </div>
                       <HStack>
-                          <Button onClick={() => setIsModalOpen(true)   } size='lg' colorScheme='green' borderRadius={'4px'} variant={"solid"} fontWeight={'700'}>
+                          <Button onClick={sellButtonCLickhandler   } size='lg' colorScheme='green' borderRadius={'4px'} variant={"solid"} fontWeight={'700'}>
                             Buy AIFT
                           </Button>
                         

@@ -14,5 +14,8 @@ module.exports = {
       gasPrice: 8000000000000,
       allowUnlimitedContractSize: true
     },
+    etherscan: {
+      apiKey: "788MP8EKS55QBDSMTWAMAAE8QG1E3BBZBG", // Your Etherscan API key
+    },
   }
 };

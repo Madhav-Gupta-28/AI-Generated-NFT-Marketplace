@@ -71,14 +71,12 @@ contract  AIFT is  ERC721URIStorage , ReentrancyGuard {
 
     }
 
-
     function updateNFTprice( uint256 _tokenId , uint256 _price) nonReentrant public{
 
         require(idToNFt[_tokenId].owner == payable(msg.sender));
         require(idToNFt[_tokenId].listed == true);
 
         idToNFt[_tokenId].price = _price;
-
     }
 
 
@@ -86,6 +84,7 @@ contract  AIFT is  ERC721URIStorage , ReentrancyGuard {
         require(idToNFt[_tokenId].owner == payable(msg.sender));
         require(idToNFt[_tokenId].listed == true);
          idToNFt[_tokenId].listed =  false;
+         _transfer(address(this), msg.sender, 1);
 
     }
 
@@ -103,13 +102,12 @@ contract  AIFT is  ERC721URIStorage , ReentrancyGuard {
         require(msg.value == idToNFt[_id].price);
 
         require(ownerOf(_id) == address(this), "Not listed for sale ");
-        
 
     // we are cutting 1% of transaction fee
-    uint256 finalPrice = idToNFt[_id].price - ((2 * idToNFt[_id].price) / 100);
+    // uint256 finalPrice = idToNFt[_id].price - ((2 * idToNFt[_id].price) / 100);
 
-    idToNFt[_id].owner.transfer(finalPrice);
-   _transfer(address(this), msg.sender, _id);
+    idToNFt[_id].owner.transfer(idToNFt[_id].price);
+    _transfer(address(this), msg.sender, _id);
 
     idToNFt[_id].owner = payable(msg.sender);
     idToNFt[_id].listed = false;
