@@ -2,14 +2,13 @@
 import React , {useState , useRef, useEffect} from 'react'
 import Header from '@/Component/Header/Header'
 import {ThirdwebProvider} from "@thirdweb-dev/react"
-import { Box,HStack , ChakraProvider, FormControl,Spinner , Heading, VStack , Input , Button, StatLabel, Flex  } from '@chakra-ui/react'
+import { Box,HStack , ChakraProvider,Alert ,AlertIcon, FormControl,Spinner , Heading, VStack , Input , Button, StatLabel, Flex  } from '@chakra-ui/react'
 require("dotenv").config()
 import axios from 'axios'
 import Style from "./mintNFT.module.css"
 import { ethers } from 'ethers'
 import { NFTStorage, File } from 'nft.storage'
 import {aiftAddress  , aiftabi} from "../../constant"
-
 
 
 const MintNFT = () => {
@@ -22,8 +21,20 @@ const MintNFT = () => {
     const [tokenURI , settokenURI] = useState("");
 
 
+    // alert states
+    const [showMetamaskAlert, setShowMetamaskAlert] = useState(false);
+    const [status, setStatus] = useState('');
+    const [type, setType] = useState('');
+
+
     // getting  the image from hugging face
     const createAIImage = async () => {
+         setTimeout(() => {
+          setStatus('              Generating The Image')
+          setType('info')
+          setShowMetamaskAlert(true)
+        },5000)
+        
         
       setMessage("Generating Image...")
       setloadingImage(true)
@@ -62,7 +73,6 @@ const MintNFT = () => {
 
     const handleSubmit = async () => {
       try{
-        // event.preventDefault();
 
         if(description === ""){
             window.alert("Please provide description")
@@ -73,10 +83,9 @@ const MintNFT = () => {
      
        const imgData = await createAIImage();
        console.log("AI Image completed ")
-        
-        
+     
        const tokenURI = await uploadImage(imgData);
-        
+       
        await mintAIFT(tokenURI);
      
        setmintingnft(false);
@@ -90,6 +99,14 @@ const MintNFT = () => {
     const uploadImage = async(imageData) => {
       // Create instance to NFT.Storage
       try{
+
+        setTimeout(() => {
+          setStatus('         Uploading Image to IPFS')
+          setType('info')
+          setShowMetamaskAlert(true)
+        },5000)
+        
+
         console.log("Upload Image to IPFS Started ")
         const nftstorage = new NFTStorage({ token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDAzM2Y5Mzc1ZEQ5ODY1YzhmN2FiODVENGRiRTM3NDhERWI4NTljRkYiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY4NTc3MTE1MDk5NiwibmFtZSI6IlBBUkszIn0.eHLoAl-RBIxAqXmHm_KTQ553Ha-_18sZrnoxuXpGxMI` })
 
@@ -112,6 +129,13 @@ const MintNFT = () => {
     const mintAIFT = async (tokenURI) => {
       setmintingnft(true);
       try{
+
+        setTimeout(() => {
+          setStatus('         Minting the AIFT.....')
+          setType('info')
+          setShowMetamaskAlert(true)
+        },4000) 
+
           const provider = new ethers.providers.Web3Provider(window.ethereum);
           const signer = provider.getSigner();
 
@@ -125,11 +149,19 @@ const MintNFT = () => {
 
           const transactionHash = tx.hash;
           signer.provider.on(transactionHash, (receipt) => {
-            // alert('Transaction confirmed:');
+            setTimeout(() => {
+              setStatus('        AIFT Minted Succesfully')
+              setType('success')
+              setShowMetamaskAlert(true)
+            },4000)
           });
  
       }catch(error){
           console.log(error)
+
+          setStatus('Transaction Rejected.... Please Try Again... ')
+        setType('error')
+        setShowMetamaskAlert(true)
       }
 }
 
@@ -140,9 +172,13 @@ const MintNFT = () => {
     <ThirdwebProvider>
         <ChakraProvider>
         <Header/>
-    <Heading style={{backgroundColor:"#000" , color:"#ff8700"}} alignSelf={'center'} textAlign={'center'} size={'lg'}  >
-        MINT  <span >AIFT</span> 
+
+        {showMetamaskAlert && <Alert status={type} variant={'subtle'} className='w-10/12'><AlertIcon />{status}</Alert>}
+    <Heading padding={'1rem 0 0 1rem'} style={{backgroundColor:"#000" , color:"#ff8700"}} alignSelf={'center'} textAlign={'center'} size={'lg'}  >
+        MINT  <span style={{  margin:'0 0 0 0.4rem' }} >AIFT</span> 
     </Heading>
+
+    {/* {showMetamaskAlert && <Alert status={type} variant={'solid'} className='w-10/12'><AlertIcon />{status}</Alert>} */}
     
         <HStack style={{backgroundColor:"#000" , color:"#ff8700"}} padding={"2rem 0 2rem 10rem "} align={'center'} alignSelf={'center'}  spacing={"5rem"} minH={'600px'} >
                 <VStack spacing={'4'}>
@@ -178,6 +214,7 @@ const MintNFT = () => {
                                     _hover={{bg:"#ff8700", color:"#fff"}}
                                     _active={{ bg: '#298e46' }}
                                     onClick={handleSubmit}
+                                    
                                   >
                                     Mint AIFT
                                   </Button>
