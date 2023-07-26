@@ -7,7 +7,6 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
-
 contract  AIFT is  ERC721URIStorage , ReentrancyGuard {
     
      // using the Counters
@@ -61,20 +60,21 @@ contract  AIFT is  ERC721URIStorage , ReentrancyGuard {
 
 
     function listNFTForSale(uint256 id , uint256 _price) nonReentrant  public  {
-        require(idToNFt[id].owner == payable(msg.sender));
-        require(idToNFt[id].listed == false);
+        require(idToNFt[id].owner == payable(msg.sender), "Owner is not the caller");
+        require(idToNFt[id].listed == false, "listed is already  true");
 
         idToNFt[id].price = _price;
-        idToNFt[id].listed = true;
-
+       
         _transfer(msg.sender, address(this), id);
+
+         idToNFt[id].listed = true;
 
     }
 
     function updateNFTprice( uint256 _tokenId , uint256 _price) nonReentrant public{
 
-        require(idToNFt[_tokenId].owner == payable(msg.sender));
-        require(idToNFt[_tokenId].listed == true);
+        require(idToNFt[_tokenId].owner == payable(msg.sender), "Owner is not the caller");
+        require(idToNFt[_tokenId].listed == true , "listed is false ");
 
         idToNFt[_tokenId].price = _price;
     }
@@ -83,34 +83,30 @@ contract  AIFT is  ERC721URIStorage , ReentrancyGuard {
     function unListNFt( uint256 _tokenId ) nonReentrant public{
         require(idToNFt[_tokenId].owner == payable(msg.sender));
         require(idToNFt[_tokenId].listed == true);
-         idToNFt[_tokenId].listed =  false;
-         _transfer(address(this), msg.sender, 1);
-
-    }
-
-    function ListNFtAgain( uint256 _tokenId ) nonReentrant public{
-        require(idToNFt[_tokenId].owner == payable(msg.sender));
-        require(idToNFt[_tokenId].listed == false);
-         idToNFt[_tokenId].listed =  true;
-
+        _transfer(address(this), msg.sender, _tokenId);
+        idToNFt[_tokenId].listed =  false;
+        idToNFt[_tokenId].price =  0;
+         
     }
 
 
       function sellNFT( uint256 _id) public payable nonReentrant  returns(bool){
     
-        require(idToNFt[_id].listed == true);
-        require(msg.value == idToNFt[_id].price);
+        require(idToNFt[_id].listed == true, "NFT is not listed");
+        require(msg.value >=  idToNFt[_id].price, "Msg.value is less than price");
 
-        require(ownerOf(_id) == address(this), "Not listed for sale ");
+        require(ownerOf(_id) == address(this), "NFT Owner is not contract address ");
 
-    // we are cutting 1% of transaction fee
-    // uint256 finalPrice = idToNFt[_id].price - ((2 * idToNFt[_id].price) / 100);
+    // we are cutting 2% of transaction fee
+    uint256 finalPrice = idToNFt[_id].price - ((2 * idToNFt[_id].price) / 100);
 
-    idToNFt[_id].owner.transfer(idToNFt[_id].price);
+    idToNFt[_id].owner.transfer(finalPrice);
+
     _transfer(address(this), msg.sender, _id);
 
     idToNFt[_id].owner = payable(msg.sender);
     idToNFt[_id].listed = false;
+    idToNFt[_id].price = 0;
 
     return true;
     }
@@ -202,8 +198,6 @@ contract  AIFT is  ERC721URIStorage , ReentrancyGuard {
     }
 
 
-
-
     receive() external payable {}
 
     fallback() external payable {}
@@ -213,9 +207,7 @@ contract  AIFT is  ERC721URIStorage , ReentrancyGuard {
         require(payable(msg.sender) == owner,'You are not owner of contract');
         (bool success,) = owner.call{value:msg.value}("");
 
-        require(success,"Trabsfer Failed");
+        require(success,"Transfer Failed");
     }
-
-
 
 }
