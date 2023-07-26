@@ -81,7 +81,7 @@ const SingleNFT = ({ params }) => {
 
         signer.provider.on(txhash, (receipt) => {
             console.log('Transaction confirmed:', receipt);
-            setStatus('AIFT Listed Succesfully')
+            setStatus('      AIFT Listed Succesfully')
             setType('success')
             setShowMetamaskAlert(true)
           });
@@ -110,14 +110,14 @@ const SingleNFT = ({ params }) => {
 
         signer.provider.on(txhash, (receipt) => {
             console.log('Transaction confirmed:', receipt);
-            setStatus('AIFT ReListed Succesfully')
+            setStatus('      AIFT Relisted Succesfully')
             setType('success')
             setShowMetamaskAlert(true)
           });
   
       } catch (error) {
         console.log(error)
-        setStatus('user rejected transaction')
+        setStatus('          Transaction Rejected... Please Try Again')
         setType('error')
         setShowMetamaskAlert(true)
   
@@ -140,13 +140,13 @@ const SingleNFT = ({ params }) => {
 
         signer.provider.on(txhash, (receipt) => {
             console.log('Transaction confirmed:', receipt);
-            setStatus('AIFT UnListed Succesfully')
+            setStatus('             AIFT Unisted Succesfully')
             setType('success')
             setShowMetamaskAlert(true)
           });
       } catch (error) {
         console.log(error)
-        setStatus('user rejected transaction')
+        setStatus(' Transaction Rejected... Please Try Again')
         setType('error')
         setShowMetamaskAlert(true)
       } 
@@ -171,7 +171,7 @@ const SingleNFT = ({ params }) => {
           <Header />
   
           <div className='w-full' style={{ backgroundColor: "#000" }} suppressHydrationWarning>
-            {showMetamaskAlert && <Alert status={type} className='w-10/12'><AlertIcon />{status}</Alert>}
+            {showMetamaskAlert && <Alert  variant={'solid'} status={type} className='w-10/12'><AlertIcon />{status}</Alert>}
             {loading ? (
               <Center h={'30vh'}>
                 <Spinner thickness='5px' speed='0.5s' emptyColor='#454545' color='#454545' size='xl' />
