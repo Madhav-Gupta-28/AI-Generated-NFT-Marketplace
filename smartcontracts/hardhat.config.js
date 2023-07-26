@@ -8,8 +8,8 @@ module.exports = {
 
   networks:{
     mumbai: {
-      url: "https://polygon-mumbai.g.alchemy.com/v2/MBv-o9PASQSY3cxjbTK6DsqRfEbVWuMC",
-      accounts: ["edd0a374fb70992c742af5ff48618adf91eb6f97656be5ed122a6fc0ff3aed3e"],
+      url: URL,
+      accounts: [PRIVATE_KEY],
       gas: "auto",
       gasPrice: 80000000000,
       allowUnlimitedContractSize: true
