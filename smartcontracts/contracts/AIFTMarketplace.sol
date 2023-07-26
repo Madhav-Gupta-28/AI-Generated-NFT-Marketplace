@@ -26,6 +26,7 @@ contract  AIFT is  ERC721URIStorage , ReentrancyGuard {
         uint256 id;
         string tokenURI;
         address payable owner;
+        address creator;
         uint256 price;
         bool listed;
     }
@@ -50,6 +51,7 @@ contract  AIFT is  ERC721URIStorage , ReentrancyGuard {
             new_tokenId,
             tokenURI,
             payable(msg.sender),
+            msg.sender,
             0,
             false
         );
@@ -192,6 +194,27 @@ contract  AIFT is  ERC721URIStorage , ReentrancyGuard {
     }
 
 
+    function fetchCreatorNFTs(address  _address) public view returns(NFTTOKEN[] memory){
+        uint256 nftcount = _tokenIds.current();
+        uint256 currentIndex = 0;
+
+        NFTTOKEN[] memory nfts = new NFTTOKEN[](nftcount);
+
+        for(uint256  i = 0 ; i < nftcount ; i++){
+            if(idToNFt[i+1].creator == _address){
+                uint256 currrentId = i + 1 ;
+
+                NFTTOKEN storage currentNFT = idToNFt[currrentId];
+                nfts[currentIndex] = currentNFT;
+                currentIndex += 1 ;
+            }
+        }
+        return nfts;
+    }
+
+  
+
+
            /// interface Contract 
     function getNFTInfobyId(uint256 id_) public  view returns(NFTTOKEN memory){
         return idToNFt[id_];
@@ -203,11 +226,9 @@ contract  AIFT is  ERC721URIStorage , ReentrancyGuard {
     fallback() external payable {}
 
 
-    function withdraw() payable public {
+    function withdraw(uint256 amount) payable public {
         require(payable(msg.sender) == owner,'You are not owner of contract');
-        (bool success,) = owner.call{value:msg.value}("");
-
-        require(success,"Transfer Failed");
+        owner.transfer(amount);
     }
 
 }
