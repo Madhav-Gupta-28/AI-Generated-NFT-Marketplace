@@ -67,9 +67,7 @@ const SingleNFT = ({ params }) => {
     
   
     const handleListNFT = async () => {
-      try {
-        alert(priceToList);
-        
+      try { 
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         const signer = provider.getSigner()
         const aift = new ethers.Contract(aiftAddress, aiftabi, signer)
@@ -97,8 +95,6 @@ const SingleNFT = ({ params }) => {
   
     const onReListButtonClick = async() =>{
       try {
-        alert(priceToList);
-        
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         const signer = provider.getSigner()
         const aift = new ethers.Contract(aiftAddress, aiftabi, signer)

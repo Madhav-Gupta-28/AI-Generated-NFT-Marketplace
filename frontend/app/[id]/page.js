@@ -163,7 +163,7 @@ const SingleNFT = ({ params }) => {
                       </div>
                       <HStack>
                         {isSameownerAddress ?
-                         <p className='text-slate-300' fontSize="xl" style={{ color: "#ff8700", padding: "1rem", marginTop: '2rem 0 2rem 0 ' }} fontWeight={'400'} m={'1'}>
+                         <p className='text-slate-300' fontSize="xl" style={{ color: "#ff8700", padding: "1rem", marginTop: '2rem 0 2rem 0 ' , fontSize:'1.4rem' }} fontWeight={'400'} m={'1'}>
                         You are a Owner of this AIFT
                         </p>
                         : 

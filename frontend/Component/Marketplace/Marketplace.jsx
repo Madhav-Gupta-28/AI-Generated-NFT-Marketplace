@@ -58,7 +58,7 @@ const Marketplace = () => {
 
       </VStack>
     </Center>
-    <HStack wrap={'wrap'} justifyContent={'space-evenly'}>
+    <HStack wrap={'wrap'} justifyContent={'space-evenly'} paddingTop={"2rem"} >
     {loading ? 
             <Center h={'30vh'} justifyContent={'center'} >
                 <Spinner alignSelf={'center'} thickness='5px'speed='0.5s'emptyColor='gray.200'color='blue.500'size='xl' />
