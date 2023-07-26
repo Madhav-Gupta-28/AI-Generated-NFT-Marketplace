@@ -24,6 +24,8 @@ const SingleNFT = ({ params }) => {
     const [price, setprice] = useState(0);
     const [isClientMounted, setIsClientMounted] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isSameownerAddress , setisSameownerAddress] = useState(false);
+    const [connectedAddress , setconnectedAddress] = useState("")
   
     // function for getting the info for each NFT with tokenid
     const getNftInfo = async () => {
@@ -39,6 +41,20 @@ const SingleNFT = ({ params }) => {
       setowner(data.owner);
       const priceinEther  = ethers.utils.formatEther(data.price.toString())
       setprice(priceinEther)
+      console.log( "coming from getNFTINFO" , owner)
+
+      const accounts = await window.ethereum.request({
+        method: 'eth_accounts'
+      });
+
+      const account = accounts[0];
+      setconnectedAddress(account)
+      console.log("account" , account)
+      if(owner === connectedAddress){
+        setisSameownerAddress(true)
+      }
+
+      console.log('issameOnweraddress var ------------ ' , isSameownerAddress)
       
       setloading(false)
     }
@@ -89,7 +105,6 @@ const SingleNFT = ({ params }) => {
       } 
 
     }
-  
 
     useEffect(() => {
       setIsClientMounted(true);
@@ -147,9 +162,15 @@ const SingleNFT = ({ params }) => {
                         </p>
                       </div>
                       <HStack>
+                        {isSameownerAddress ?
+                         <p className='text-slate-300' fontSize="xl" style={{ color: "#ff8700", padding: "1rem", marginTop: '2rem 0 2rem 0 ' }} fontWeight={'400'} m={'1'}>
+                        You are a Owner of this AIFT
+                        </p>
+                        : 
                           <Button onClick={sellButtonCLickhandler   } size='lg' colorScheme='green' borderRadius={'4px'} variant={"solid"} fontWeight={'700'}>
-                            Buy AIFT
+                          Buy AIFT
                           </Button>
+                          }
                         
                       </HStack>
                     </VStack>
