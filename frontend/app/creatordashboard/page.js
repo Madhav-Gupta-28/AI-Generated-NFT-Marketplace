@@ -5,13 +5,11 @@ import Header from '@/Component/Header/Header'
 import {ThirdwebProvider} from "@thirdweb-dev/react"
 import { Button , Box, Center , Heading, VStack , HStack ,Spinner, ChakraProvider } from '@chakra-ui/react';
 import axios from 'axios'
-import Style from "./profile.module.css"
 import { ethers } from 'ethers'
 import Link from 'next/link';
-import {aiftAddress  , aiftabi} from "../../constant"
+import {aiftAddress  , aiftabi} from "../../constant.js"
 import {ExternalLinkIcon} from "@chakra-ui/icons"
 import NFTTile from '@/Component/NFTTile/NFTTile';
-
 
 const Profile = () => {
     const [nftArray , setnftArray] = useState([])
@@ -19,7 +17,6 @@ const Profile = () => {
 
 
     const fetchMyNFTs = async() => {
-
         try{
 
             setloading(true)
@@ -33,7 +30,7 @@ const Profile = () => {
             const signer = provider.getSigner()
             const aift = new ethers.Contract(aiftAddress, aiftabi, signer)
         
-            const tx = await aift.fetchMYNFTs(account)
+            const tx = await aift.fetchCreatorNFTs(account)
             const proposalsArray = Object.values(tx); 
             console.log(tx)
             setnftArray(proposalsArray)
@@ -51,7 +48,6 @@ const Profile = () => {
         fetchMyNFTs()
       },[])
 
-
   return (
     <ThirdwebProvider>
         <ChakraProvider>
@@ -67,11 +63,9 @@ const Profile = () => {
               padding={"0.4rem 0.8rem"}
               border={"2px solid #ff8700"}
               margin={'2rem 0 '}
-              
             >
-             See Your AIFT
+                AIFT's Created By You
             </Heading>
-       
    
           </VStack>
         </Center>
@@ -108,6 +102,7 @@ const Profile = () => {
 }
 
         </HStack>
+
     </div>
         </ChakraProvider>
     </ThirdwebProvider>

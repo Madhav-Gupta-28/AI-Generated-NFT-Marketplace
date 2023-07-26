@@ -23,7 +23,7 @@ const Header = () => {
           </MenuButton >
           <MenuList style={{backgroundColor:"#000"}}>
             <MenuItem style={{fontSize:'1.2rem' , color:"#ff8700" , backgroundColor:"#000"}}><Link  href={'/mintNFT'} >Mint AIFT</Link></MenuItem>
-            <MenuItem style={{fontSize:'1.2rem' , color:"#ff8700" , backgroundColor:"#000"}}><Link  href={'/creatorDashboard'}></Link>Creator Dashboard</MenuItem>
+            <MenuItem style={{fontSize:'1.2rem' , color:"#ff8700" , backgroundColor:"#000"}}><Link  href={'/creatordashboard'}></Link>Creator Dashboard</MenuItem>
             <MenuItem style={{fontSize:'1.2rem' , color:"#ff8700" , backgroundColor:"#000"}}><Link  href={"/"}>Marketplace</Link></MenuItem>
             <MenuItem style={{fontSize:'1.2rem' , color:"#ff8700" , backgroundColor:"#000"}}><Link  href={"/profile"}>Profile</Link></MenuItem>
           </MenuList>

@@ -108,7 +108,7 @@ const MintNFT = () => {
         
 
         console.log("Upload Image to IPFS Started ")
-        const nftstorage = new NFTStorage({ token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDAzM2Y5Mzc1ZEQ5ODY1YzhmN2FiODVENGRiRTM3NDhERWI4NTljRkYiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY4NTc3MTE1MDk5NiwibmFtZSI6IlBBUkszIn0.eHLoAl-RBIxAqXmHm_KTQ553Ha-_18sZrnoxuXpGxMI` })
+        const nftstorage = new NFTStorage({ token: NFT_STOARGE_KEY })
 
         // Send request to store image
         const { ipnft } = await nftstorage.store({
