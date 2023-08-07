@@ -11,21 +11,21 @@ const Header = () => {
   return (
     <>
 
-    <Flex minWidth='max-content' alignItems='around' p={4} gap='2'  style={{backgroundColor:"#000" , color:"#ff8700"}} >
+    <Flex minWidth='max-content' alignItems='around' p={4} gap='2'  style={{  background: "linear-gradient(135deg, #426F4E 0%, #05101A 100%)"  , color:"rgba(255, 255, 255, 0.90)"}} >
     <Box p='2'>
-      <Heading size='md' style={{ fontWeight:'700' , padding : "1rem 2rem" , border:'2px solid #ff8700'}} >AIFT Marketplace</Heading>
+      <Heading size='md' style={{ fontWeight:'700' , padding : "1rem 2rem" ,  border:"3px solid rgba(255, 255, 255, 0.90)"}} >Poply Marketplace</Heading>
     </Box>
     {/* <Spacer /> */}
    <HStack>
    <Menu>
-   <MenuButton style={{marginLeft:'2rem' , padding:'0.5rem 1rem'}} className={Style.a} fontWeight="500" fontSize="lg" _hover={{ textDecoration: 'underline' , cursor:'pointer'}}>
+   <MenuButton style={{marginLeft:'2rem' , color:"rgba(255, 255, 255, 0.90)" , padding:'0.5rem 1rem'}} className={Style.a} fontWeight="500" fontSize="lg" _hover={{ textDecoration: 'underline' , cursor:'pointer'}}>
           Navigation
           </MenuButton >
-          <MenuList style={{backgroundColor:"#000"}}>
-            <MenuItem style={{fontSize:'1.2rem' , color:"#ff8700" , backgroundColor:"#000"}}><Link  href={'/mintNFT'} >Mint AIFT</Link></MenuItem>
-            <MenuItem style={{fontSize:'1.2rem' , color:"#ff8700" , backgroundColor:"#000"}}><Link  href={'/creatordashboard'}></Link>Creator Dashboard</MenuItem>
-            <MenuItem style={{fontSize:'1.2rem' , color:"#ff8700" , backgroundColor:"#000"}}><Link  href={"/"}>Marketplace</Link></MenuItem>
-            <MenuItem style={{fontSize:'1.2rem' , color:"#ff8700" , backgroundColor:"#000"}}><Link  href={"/profile"}>Profile</Link></MenuItem>
+          <MenuList style={{backgroundColor:"#426F4E"}}>
+            <MenuItem style={{fontSize:'1.2rem' , color:"rgba(255, 255, 255, 0.90)" , backgroundColor:"#426F4E"}}><Link  href={'/mintNFT'} >Mint AIFT</Link></MenuItem>
+            <MenuItem style={{fontSize:'1.2rem' , color:"rgba(255, 255, 255, 0.90)" , backgroundColor:"#426F4E"}}><Link  href={'/creatordashboard'}></Link>Creator Dashboard</MenuItem>
+            <MenuItem style={{fontSize:'1.2rem' , color:"rgba(255, 255, 255, 0.90)" , backgroundColor:"#426F4E"}}><Link  href={"/"}>Marketplace</Link></MenuItem>
+            <MenuItem style={{fontSize:'1.2rem' , color:"rgba(255, 255, 255, 0.90)" , backgroundColor:"#426F4E"}}><Link  href={"/profile"}>Profile</Link></MenuItem>
           </MenuList>
         </Menu>
    </HStack>

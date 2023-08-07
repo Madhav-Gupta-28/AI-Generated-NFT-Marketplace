@@ -122,27 +122,27 @@ const SingleNFT = ({ params }) => {
         <ChakraProvider>
           <Header />
   
-          <div className='w-full' style={{ backgroundColor: "#000" }} suppressHydrationWarning>
+          <div className='w-full' style={{background: "linear-gradient(135deg, #426F4E 0%, #05101A 100%)"  }} suppressHydrationWarning>
             {showMetamaskAlert && <Alert status={type} className='w-10/12'><AlertIcon />{status}</Alert>}
             {loading ? (
               <Center h={'30vh'}>
-                <Spinner thickness='5px' speed='0.5s' emptyColor='#454545' color='#454545' size='xl' />
+                <Spinner thickness='5px' speed='0.5s' emptyColor='rgba(255, 255, 255, 0.90)' color='rgba(255, 255, 255, 0.90)' size='xl' />
               </Center>
             ) : (
               isClientMounted && (
-                <div style={{ backgroundColor: "#000" }} className='px-28 py-20'>
-                  <HStack spacing={6} style={{ backgroundColor: "#000", border: '3px solid #ff8700' }} className='shadow-xl shadow-black rounded-2xl p-6'>
-                    <div style={{ backgroundColor: "#000" }} className='w-6/12 h-full'>
+                <div style={{  background: "linear-gradient(135deg, #426F4E 0%, #05101A 100%)"  }} className='px-28 py-20'>
+                  <HStack spacing={6} style={{ background: "linear-gradient(135deg, #426F4E 0%, #05101A 100%)" , border: '3px solid rgba(255, 255, 255, 0.90)' }} className='rounded-2xl p-6'>
+                    <div style={{ }} className='w-6/12 h-full'>
                       <img
                         className='border-cyan-500 border-2 w-full mx-auto rounded-xl'
                         src={`${image.replace('ipfs://', 'https://nftstorage.link/ipfs/')}`}
                         alt={name}
-                        style={{ maxWidth: '70%', border: '3px solid #ff8700' }}
+                        style={{ maxWidth: '70%', border: '3px solid rgba(255, 255, 255, 0.90)' }}
                       />
                     </div>
                     <VStack spacing={6} align='stretch' marginLeft={'5rem'}>
                       <div className='details-div'>
-                        <Heading as="h3" m={'1'} size="lg" color={'#ff8700'}>
+                        <Heading as="h3" m={'1'} size="lg" color={'rgba(255, 255, 255, 0.90)'}>
                           #{params.id}{' '}
                           <Link target='_blank' style={{ marginLeft: '3px' }} href={`https://ipfs.io/ipfs/${tokenuri}/metadata.json`}>
                             <ExternalLinkIcon fontWeight={'1000'} fontSize={'2rem'} color={"#CCEABB"} />
@@ -154,16 +154,16 @@ const SingleNFT = ({ params }) => {
                         {isClientMounted && (
                           <p className='text-slate-300' fontWeight={'700'} m={'1'} fontSize={'xl'}>
 
-                            <Text style={{  display: 'inline', color: "#ff8700", fontWeight: '1000', padding: "1rem", marginTop: '2rem 0 2rem 0 ' , fontSize:'1.2rem' }}>  <span style={{color:"#fff"}}>Description:&nbsp;  </span>  { description}</Text>
+                            <Text style={{  display: 'inline', color: "rgba(255, 255, 255, 0.90)", fontWeight: '1000', padding: "1rem", marginTop: '2rem 0 2rem 0 ' , fontSize:'1.2rem' }}>  <span style={{color:"#fff"}}>Description:&nbsp;  </span>  { description}</Text>
                           </p>
                         )}
-                        <p className='text-slate-300' fontSize="xl" style={{ color: "#ff8700", padding: "1rem", marginTop: '2rem 0 2rem 0 ' }} fontWeight={'400'} m={'1'}>
+                        <p className='text-slate-300' fontSize="xl" style={{ color: "rgba(255, 255, 255, 0.90)", padding: "1rem", marginTop: '2rem 0 2rem 0 ' }} fontWeight={'400'} m={'1'}>
                          <span style={{color:"#fff"}}>Owner: </span> {owner}
                         </p>
                       </div>
                       <HStack>
                         {isSameownerAddress ?
-                         <p className='text-slate-300' fontSize="xl" style={{ color: "#ff8700", padding: "1rem", marginTop: '2rem 0 2rem 0 ' , fontSize:'1.4rem' }} fontWeight={'400'} m={'1'}>
+                         <p className='text-slate-300' fontSize="xl" style={{ color: "rgba(255, 255, 255, 0.90)", padding: "1rem", marginTop: '2rem 0 2rem 0 ' , fontSize:'1.4rem' }} fontWeight={'400'} m={'1'}>
                         You are a Owner of this AIFT
                         </p>
                         : 

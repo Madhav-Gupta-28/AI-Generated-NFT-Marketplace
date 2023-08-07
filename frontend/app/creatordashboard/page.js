@@ -52,19 +52,18 @@ const Profile = () => {
     <ThirdwebProvider>
         <ChakraProvider>
             <Header/>
-            <div className='h-full' style={{minHeight:'100vh' ,backgroundColor:"#000" , color:"#ff8700"}} >
+            <div className='h-full' style={{minHeight:'100vh' , background: "linear-gradient(135deg, #426F4E 0%, #05101A 100%)"  , color:"rgba(255, 255, 255, 0.90)"}} >
         <Center justifyContent={'center'}>
         <VStack as='header' spacing='6' mt='8' wrap={'wrap'} justifyContent={'space-evenly'} p={'2'}>
             <Heading
               as='h1'
               fontWeight='700'
               fontSize='2rem'
-              color={"#ff8700"}
+              color={"rgba(255, 255, 255, 0.90)"}
               padding={"0.4rem 0.8rem"}
-              border={"2px solid #ff8700"}
               margin={'2rem 0 '}
             >
-                AIFT's Created By You
+                AIFTs Created By You
             </Heading>
    
           </VStack>
@@ -72,7 +71,7 @@ const Profile = () => {
         <HStack wrap={'wrap'} justifyContent={'space-evenly'}>
         {loading ? 
                 <Center h={'30vh'} justifyContent={'center'} >
-                    <Spinner alignSelf={'center'} thickness='5px'speed='0.5s'emptyColor='gray.200'color='blue.500'size='xl' />
+                    <Spinner alignSelf={'center'} thickness='5px'speed='0.5s'emptyColor='gray.200'color='rgba(255, 255, 255, 0.90)'size='xl' />
                 </Center>
                  :
               <HStack wrap={'wrap'} justifyContent={'space-evenly'}>
@@ -82,7 +81,7 @@ const Profile = () => {
                   return (
                     <>   
                       {items.tokenURI && (
-                        <div className="col-span-1 w-72 rounded-3xl border-2 pt-2.5 shadow-md hover:shadow-lg hover:shadow-black transition ease-in-out delay-150 shadow-black"  style={{border:"2px solid #ff8700"}}>
+                        <div className="col-span-1 w-72 rounded-3xl border-2 pt-2.5 shadow-md hover:shadow-lg hover:shadow-black transition ease-in-out delay-150 shadow-black"  style={{border:"2px solid rgba(255, 255, 255, 0.90)"}}>
                           <NFTTile tokenURI={items.tokenURI} proposalid={items.id.toString() } listed={items.listed} price={items.price.toString()} />
                         </div>
                       )}

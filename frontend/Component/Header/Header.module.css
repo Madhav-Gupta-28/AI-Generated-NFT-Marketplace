@@ -1,6 +1,6 @@
 .a{
     font-size: 1.4rem;
     transition: all 0.2s;
-    color: #454545;
+    color: rgba(255, 255, 255, 0.90);
     padding-right: 1rem;
 }

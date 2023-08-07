@@ -108,7 +108,7 @@ const MintNFT = () => {
         
 
         console.log("Upload Image to IPFS Started ")
-        const nftstorage = new NFTStorage({ token: NFT_STOARGE_KEY })
+        const nftstorage = new NFTStorage({ token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDZhRTg0MTllNTkyOThBYzc4NGU0QTlkQkUxNzRjMzBCZkY1RDllRjAiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY5MTMzMDg0NjY3MSwibmFtZSI6InBvcGx5In0.SnuQ90I10DUChfYNUbapWKEqkx4fL_uBCF9bup775D4 "})
 
         // Send request to store image
         const { ipnft } = await nftstorage.store({
@@ -174,20 +174,20 @@ const MintNFT = () => {
         <Header/>
 
         {showMetamaskAlert && <Alert status={type} variant={'subtle'} className='w-10/12'><AlertIcon />{status}</Alert>}
-    <Heading padding={'1rem 0 0 1rem'} style={{backgroundColor:"#000" , color:"#ff8700"}} alignSelf={'center'} textAlign={'center'} size={'lg'}  >
-        MINT  <span style={{  margin:'0 0 0 0.4rem' }} >AIFT</span> 
+    <Heading padding={'1rem 0 0 1rem'} style={{ background: "linear-gradient(135deg, #426F4E 0%, #05101A 100%)" , color:"rgba(255, 255, 255, 0.90)"}} alignSelf={'center'} textAlign={'center'} size={'lg'}  >
+        MINT  <span style={{color:"rgba(255, 255, 255, 0.90)",   margin:'0 0 0 0.4rem' }} >AIFT</span> 
     </Heading>
 
     {/* {showMetamaskAlert && <Alert status={type} variant={'solid'} className='w-10/12'><AlertIcon />{status}</Alert>} */}
     
-        <HStack style={{backgroundColor:"#000" , color:"#ff8700"}} padding={"2rem 0 2rem 10rem "} align={'center'} alignSelf={'center'}  spacing={"5rem"} minH={'600px'} >
+        <HStack style={{background: "linear-gradient(135deg, #426F4E 0%, #05101A 100%)" ,  color:"rgba(255, 255, 255, 0.90)"}} padding={"2rem 0 2rem 10rem "} align={'center'} alignSelf={'center'}  spacing={"5rem"} minH={'600px'} >
                 <VStack spacing={'4'}>
                     <FormControl>
                       <Input
                         type='text'
                         onChange={(event) => setName(event.target.value)}
                         placeholder='Enter Name...'
-                        borderColor='#ff8700'
+                        borderColor="rgba(255, 255, 255, 0.90)"
                         size='lg'
                         borderRadius='6px'
                         required
@@ -198,7 +198,7 @@ const MintNFT = () => {
                         type='text'
                         onChange={(event) => setDescription(event.target.value)}
                         placeholder='Enter Description... '
-                        borderColor='#ff8700'
+                        borderColor="rgba(255, 255, 255, 0.90)"
                         size='lg'
                         borderRadius='6px'
                         required
@@ -208,10 +208,10 @@ const MintNFT = () => {
               
                     <Button
                                   padding={"0 6rem"}
-                                    bg='#ff8700'
-                                    color='#fff'
+                                    bg="rgba(255, 255, 255, 0.90)"
+                                    color='#426F4E'
                                     size='lg'
-                                    _hover={{bg:"#ff8700", color:"#fff"}}
+                                    _hover={{bg:"#426F4E", color:"#fff"}}
                                     _active={{ bg: '#298e46' }}
                                     onClick={handleSubmit}
                                     
@@ -229,7 +229,7 @@ const MintNFT = () => {
                     <img src={img} alt='AI Generated Image'/>
                 ): loadingImage ? (
                     <div className={Style.image__placeholder}>
-                   <Spinner size='xl'   thickness='4px' speed='0.65s' emptyColor='gray.200' color='#ff8700'  />
+                   <Spinner size='xl'   thickness='4px' speed='0.65s' emptyColor='gray.200' color='rgba(255, 255, 255, 0.90)'  />
               <p style={{paddingLeft:'1rem' , fontSize:"1.4rem"}} >{message} </p>
             </div>
                 ) : (
