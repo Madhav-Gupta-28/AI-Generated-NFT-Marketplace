@@ -3,17 +3,19 @@ import React , {useState , useEffect , useContext} from 'react'
 import { HStack , Heading , Flex  , Spacer , Box , Menu , MenuButton ,MenuItem , MenuList} from '@chakra-ui/react';
 import Link from 'next/link';
 import Style from "./Header.module.css"
-import { ConnectWallet } from '@thirdweb-dev/react';
+import { ConnectWallet  } from '@thirdweb-dev/react';
 
 
 const Header = () => {
+  
+
 
   return (
     <>
 
-    <Flex minWidth='max-content' alignItems='around' p={4} gap='2'  style={{  background: "linear-gradient(135deg, #426F4E 0%, #05101A 100%)"  , color:"rgba(255, 255, 255, 0.90)"}} >
+    <Flex minWidth='max-content' alignItems='around' p={4} gap='2'  style={{paddingBottom:'10rem' , background: "linear-gradient(135deg, #426F4E 0%, #05101A 100%)"  , color:"rgba(255, 255, 255, 0.90)"}} >
     <Box p='2'>
-      <Heading size='md' style={{ fontWeight:'700' , padding : "1rem 2rem" ,  border:"3px solid rgba(255, 255, 255, 0.90)"}} >Poply Marketplace</Heading>
+      <Heading size='md' style={{ fontWeight:'800',fontSize:"2rem" , padding : "1rem 2rem" , color:"#50A838"}} >Poply</Heading>
     </Box>
     {/* <Spacer /> */}
    <HStack>
@@ -30,7 +32,8 @@ const Header = () => {
         </Menu>
    </HStack>
    <Spacer/>
-   <ConnectWallet/>
+   <ConnectWallet theme="dark" btnTitle="Login" className={Style.button} />
+
   </Flex>
 
 
