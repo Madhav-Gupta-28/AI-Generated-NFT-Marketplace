@@ -173,21 +173,26 @@ const MintNFT = () => {
         <ChakraProvider>
         <Header/>
 
+        <VStack style={{ background: "linear-gradient(135deg, #426F4E 0%, #05101A 100%)" , color:"#FFFFFF"}}  >
+
         {showMetamaskAlert && <Alert status={type} variant={'subtle'} className='w-10/12'><AlertIcon />{status}</Alert>}
-    <Heading padding={'1rem 0 0 1rem'} style={{ background: "linear-gradient(135deg, #426F4E 0%, #05101A 100%)" , color:"rgba(255, 255, 255, 0.90)"}} alignSelf={'center'} textAlign={'center'} size={'lg'}  >
-        MINT  <span style={{color:"rgba(255, 255, 255, 0.90)",   margin:'0 0 0 0.4rem' }} >AIFT</span> 
+    <Heading padding={'4rem 0 0 0'}  alignSelf={'center'} textAlign={'center'} size={'lg'}  >
+        MINT  AIFT
     </Heading>
+
+    <div className={Style.thinwhiteborder}>
+    </div>
 
     {/* {showMetamaskAlert && <Alert status={type} variant={'solid'} className='w-10/12'><AlertIcon />{status}</Alert>} */}
     
-        <HStack style={{background: "linear-gradient(135deg, #426F4E 0%, #05101A 100%)" ,  color:"rgba(255, 255, 255, 0.90)"}} padding={"2rem 0 2rem 10rem "} align={'center'} alignSelf={'center'}  spacing={"5rem"} minH={'600px'} >
+        <HStack style={{ color:"rgba(255, 255, 255, 0.90)"}} padding={"0 0 2rem 2rem "} align={'center'} alignSelf={'center'}  spacing={"4rem"} minH={'600px'} >
                 <VStack spacing={'4'}>
                     <FormControl>
                       <Input
                         type='text'
                         onChange={(event) => setName(event.target.value)}
-                        placeholder='Enter Name...'
-                        borderColor="rgba(255, 255, 255, 0.90)"
+                        placeholder='Enter AIFT Name...'
+                        borderColor="#9A9A9A"
                         size='lg'
                         borderRadius='6px'
                         required
@@ -197,9 +202,10 @@ const MintNFT = () => {
                       <Input
                         type='text'
                         onChange={(event) => setDescription(event.target.value)}
-                        placeholder='Enter Description... '
-                        borderColor="rgba(255, 255, 255, 0.90)"
+                        placeholder='Enter Propmt... '
+                        borderColor="#9A9A9A"
                         size='lg'
+                        padding={'4rem 3rem'}
                         borderRadius='6px'
                         required
                       />
@@ -207,9 +213,9 @@ const MintNFT = () => {
 
               
                     <Button
-                                  padding={"0 6rem"}
-                                    bg="rgba(255, 255, 255, 0.90)"
-                                    color='#426F4E'
+                                  padding={"0 8rem"}
+                                    bg="#50A838"
+                                    color='fff'
                                     size='lg'
                                     _hover={{bg:"#426F4E", color:"#fff"}}
                                     _active={{ bg: '#298e46' }}
@@ -229,8 +235,8 @@ const MintNFT = () => {
                     <img src={img} alt='AI Generated Image'/>
                 ): loadingImage ? (
                     <div className={Style.image__placeholder}>
-                   <Spinner size='xl'   thickness='4px' speed='0.65s' emptyColor='gray.200' color='rgba(255, 255, 255, 0.90)'  />
-              <p style={{paddingLeft:'1rem' , fontSize:"1.4rem"}} >{message} </p>
+                   <Spinner size='xl'   thickness='4px' speed='0.65s' emptyColor='gray.200' color='#50A838'  />
+              <p style={{paddingLeft:'1rem' , fontSize:"1.4rem" , color:"#50A838"}} >{message} </p>
             </div>
                 ) : (
                     <></>
@@ -239,7 +245,7 @@ const MintNFT = () => {
             </Box>
         </HStack>
 
-
+        </VStack>
 
         </ChakraProvider>
     </ThirdwebProvider>
