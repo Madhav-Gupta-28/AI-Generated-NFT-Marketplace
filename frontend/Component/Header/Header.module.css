@@ -12,5 +12,8 @@
     background: #50A838 !important;
     box-shadow: 0px 4px 0px 0px #3C8828 !important;
     border-color: #5B7865 !important;
-    padding:'-0.5rem -1rem' !important;
 }
+
+.thinwhiteborder {
+    border: 1px solid #9A9A9A;
+  }
