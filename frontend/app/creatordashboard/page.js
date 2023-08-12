@@ -10,6 +10,7 @@ import Link from 'next/link';
 import {aiftAddress  , aiftabi} from "../../constant.js"
 import {ExternalLinkIcon} from "@chakra-ui/icons"
 import NFTTile from '@/Component/NFTTile/NFTTile';
+import Style from "../../app/mintNFT/mintNFT.module.css"
 
 const Profile = () => {
     const [nftArray , setnftArray] = useState([])
@@ -60,18 +61,21 @@ const Profile = () => {
               fontWeight='700'
               fontSize='2rem'
               color={"rgba(255, 255, 255, 0.90)"}
-              padding={"0.4rem 0.8rem"}
+              padding={"0.2rem 0.8rem"}
               margin={'2rem 0 '}
             >
-                AIFTs Created By You
+                Creator Dashboard
             </Heading>
+
+            <div className={Style.thinwhiteborder} style={{marginBottom:'2rem' }} >
+    </div>
    
           </VStack>
         </Center>
         <HStack wrap={'wrap'} justifyContent={'space-evenly'}>
         {loading ? 
                 <Center h={'30vh'} justifyContent={'center'} >
-                    <Spinner alignSelf={'center'} thickness='5px'speed='0.5s'emptyColor='gray.200'color='rgba(255, 255, 255, 0.90)'size='xl' />
+                    <Spinner alignSelf={'center'} thickness='5px'speed='0.5s'emptyColor='gray.200'color='#9A9A9A'size='xl' />
                 </Center>
                  :
               <HStack wrap={'wrap'} justifyContent={'space-evenly'}>

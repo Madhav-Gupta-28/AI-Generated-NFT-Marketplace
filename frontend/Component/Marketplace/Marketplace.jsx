@@ -33,9 +33,29 @@ const Marketplace = () => {
         console.log('fetchListedNFTs Function Error -> ' , error)
     }
     }
+
+    const checkNetwork = async() => {
+      const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+
+      if (chainId !== '0x13881') {
+        alert("Please connect to the Mumbai Test Network");
+
+        try{
+          await window.ethereum.request({
+            method: 'wallet_switchEthereumChain',
+            params: [{ chainId: '0x13881' }], // chainId must be in hexadecimal numbers
+          });
+        }catch(error){
+          console.log(error)
+        }
+       
+      }
+      
+    }
         
     useEffect(() => {
-      fetchListedNFTs()
+      fetchListedNFTs();
+      checkNetwork()
     },[])
   
 
@@ -49,14 +69,18 @@ const Marketplace = () => {
           fontWeight='700'
           fontSize='2rem'
           color={"rgba(255, 255, 255, 0.90)"}
-          padding={"0.4rem 0.8rem"}
+          padding={"0.2rem 0.8rem"}
         >
          Marketplace
         </Heading>
+
+        <div className={Style.thinwhiteborder}>
+    </div>
    
 
       </VStack>
     </Center>
+    
     <HStack wrap={'wrap'} justifyContent={'space-evenly'} paddingTop={"2rem"} >
     {loading ? 
             <Center h={'30vh'} justifyContent={'center'} >

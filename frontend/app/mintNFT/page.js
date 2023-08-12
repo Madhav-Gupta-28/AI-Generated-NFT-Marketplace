@@ -28,7 +28,7 @@ const MintNFT = () => {
 
 
     // getting  the image from hugging face
-    const createAIImage = async () => {
+    const createAIImage = async() => {
          setTimeout(() => {
           setStatus('              Generating The Image')
           setType('info')
@@ -165,8 +165,6 @@ const MintNFT = () => {
       }
 }
 
-
-
  return (
     <>
     <ThirdwebProvider>
@@ -176,14 +174,14 @@ const MintNFT = () => {
         <VStack style={{ background: "linear-gradient(135deg, #426F4E 0%, #05101A 100%)" , color:"#FFFFFF"}}  >
 
         {showMetamaskAlert && <Alert status={type} variant={'subtle'} className='w-10/12'><AlertIcon />{status}</Alert>}
-    <Heading padding={'4rem 0 0 0'}  alignSelf={'center'} textAlign={'center'} size={'lg'}  >
+    <Heading padding={'3rem 0 0 0'}  alignSelf={'center'} textAlign={'center'} size={'lg'}  >
         MINT  AIFT
     </Heading>
 
     <div className={Style.thinwhiteborder}>
     </div>
 
-    {/* {showMetamaskAlert && <Alert status={type} variant={'solid'} className='w-10/12'><AlertIcon />{status}</Alert>} */}
+    {showMetamaskAlert && <Alert status={type} variant={'solid'} className='w-10/12'><AlertIcon />{status}</Alert>}
     
         <HStack style={{ color:"rgba(255, 255, 255, 0.90)"}} padding={"0 0 2rem 2rem "} align={'center'} alignSelf={'center'}  spacing={"4rem"} minH={'600px'} >
                 <VStack spacing={'4'}>

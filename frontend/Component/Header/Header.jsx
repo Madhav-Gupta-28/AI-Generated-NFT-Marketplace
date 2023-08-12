@@ -7,23 +7,16 @@ import { ConnectWallet  } from '@thirdweb-dev/react';
 import logo from "../../logo.png"
 import Image from 'next/image'
 
-
 const Header = () => {
-  
-
 
   return (
     <>
-
-    
-
     <Flex minWidth='max-content' alignItems='around' p={4} gap='2'  style={{background: "linear-gradient(135deg, #426F4E 0%, #05101A 100%)"  , color:"rgba(255, 255, 255, 0.90)"}} >
     <Box p='2' style={{marginLeft:'1rem'}}>
     <Image  priority src={logo} style={{height:'2rem' , width:'2rem' , display:'inline'   , marginBottom:'1rem'}} />
       <Heading size='md' style={{ fontWeight:'900',fontSize:"2rem" , padding : "1rem 2rem 1rem 0.6rem" ,display:'inline-block' , color:"#50A838"}} >Poply</Heading>
 
     </Box>
-    {/* <Spacer /> */}
    <HStack>
    <Menu>
    <MenuButton style={{marginLeft:'2rem' , fontSize:'1.6rem' , color:"#50A838" , padding:'0.5rem 1rem'}} className={Style.a} fontWeight="500" fontSize="lg" _hover={{ textDecoration: 'underline' , cursor:'pointer'}}>
@@ -43,7 +36,6 @@ const Header = () => {
   </Flex>
 
   <div className={Style.thinwhiteborder} ></div>
-
 
     </>
   )

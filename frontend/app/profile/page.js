@@ -64,14 +64,16 @@ const Profile = () => {
               as='h1'
               fontWeight='700'
               fontSize='2rem'
-              color={"rgba(255, 255, 255, 0.90)"}
+              color={"#fff"}
               padding={"0.4rem 0.8rem"}
               margin={'2rem 0 '}
               
             >
-             See Your AIFT
+             Profile
             </Heading>
-       
+
+            <div className={Style.thinwhiteborder} style={{marginBottom:'2rem'}} >
+    </div>
    
           </VStack>
         </Center>

@@ -16,7 +16,6 @@ const Home = () => {
     <Header/>
       <Marketplace/>
       </ThirdwebProvider>
-    
     </ChakraProvider>
     
     </>

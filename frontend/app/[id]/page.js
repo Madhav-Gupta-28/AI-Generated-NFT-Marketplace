@@ -126,48 +126,48 @@ const SingleNFT = ({ params }) => {
             {showMetamaskAlert && <Alert status={type} className='w-10/12'><AlertIcon />{status}</Alert>}
             {loading ? (
               <Center h={'30vh'}>
-                <Spinner thickness='5px' speed='0.5s' emptyColor='rgba(255, 255, 255, 0.90)' color='rgba(255, 255, 255, 0.90)' size='xl' />
+                <Spinner thickness='5px' speed='0.5s' emptyColor='#9A9A9A' color='rgba(255, 255, 255, 0.90)' size='xl' />
               </Center>
             ) : (
               isClientMounted && (
                 <div style={{  background: "linear-gradient(135deg, #426F4E 0%, #05101A 100%)"  }} className='px-28 py-20'>
-                  <HStack spacing={6} style={{ background: "linear-gradient(135deg, #426F4E 0%, #05101A 100%)" , border: '3px solid rgba(255, 255, 255, 0.90)' }} className='rounded-2xl p-6'>
+                  <HStack spacing={6} style={{ background: "linear-gradient(135deg, #426F4E 0%, #05101A 100%)" , border: '3px solid #9A9A9A' }} className='rounded-2xl p-6'>
                     <div style={{ }} className='w-6/12 h-full'>
                       <img
                         className='border-cyan-500 border-2 w-full mx-auto rounded-xl'
                         src={`${image.replace('ipfs://', 'https://nftstorage.link/ipfs/')}`}
                         alt={name}
-                        style={{ maxWidth: '70%', border: '3px solid rgba(255, 255, 255, 0.90)' }}
+                        style={{ maxWidth: '70%', border: '3px solid #9A9A9A' }}
                       />
                     </div>
                     <VStack spacing={6} align='stretch' marginLeft={'5rem'}>
                       <div className='details-div'>
-                        <Heading as="h3" m={'1'} size="lg" color={'rgba(255, 255, 255, 0.90)'}>
+                        <Heading as="h3" m={'1'} size="lg" color={'#9A9A9A'}>
                           #{params.id}{' '}
                           <Link target='_blank' style={{ marginLeft: '3px' }} href={`https://ipfs.io/ipfs/${tokenuri}/metadata.json`}>
                             <ExternalLinkIcon fontWeight={'1000'} fontSize={'2rem'} color={"#CCEABB"} />
                           </Link>
                         </Heading>
                         <Heading as="h6" m={'1'} size="md" color={'rgb(209 213 219)'}>
-                          <Text style={{ marginTop: '2rem 0 2rem 0 ', padding: "1rem", display: 'inline', fontWeight: '1000', color: "#ff8700" }}> <span style={{color:"#fff"}}>Name:&nbsp;  </span>   {  name} </Text>
+                          <Text style={{ marginTop: '2rem 0 2rem 0 ', padding: "1rem", display: 'inline', fontWeight: '1000', color: "#fff" }}> <span style={{color:"#9A9A9A"}}>Name:&nbsp;  </span>   {  name} </Text>
                         </Heading>
                         {isClientMounted && (
                           <p className='text-slate-300' fontWeight={'700'} m={'1'} fontSize={'xl'}>
 
-                            <Text style={{  display: 'inline', color: "rgba(255, 255, 255, 0.90)", fontWeight: '1000', padding: "1rem", marginTop: '2rem 0 2rem 0 ' , fontSize:'1.2rem' }}>  <span style={{color:"#fff"}}>Description:&nbsp;  </span>  { description}</Text>
+                            <Text style={{  display: 'inline', color: "rgba(255, 255, 255, 0.90)", fontWeight: '1000', padding: "1rem", marginTop: '2rem 0 2rem 0 ' , fontSize:'1.2rem' }}>  <span style={{color:"#9A9A9A"}}>Description:&nbsp;  </span>  { description}</Text>
                           </p>
                         )}
-                        <p className='text-slate-300' fontSize="xl" style={{ color: "rgba(255, 255, 255, 0.90)", padding: "1rem", marginTop: '2rem 0 2rem 0 ' }} fontWeight={'400'} m={'1'}>
+                        <p className='text-slate-300' fontSize="xl" style={{ color: "#9A9A9A", padding: "1rem", marginTop: '2rem 0 2rem 0 ' }} fontWeight={'400'} m={'1'}>
                          <span style={{color:"#fff"}}>Owner: </span> {owner}
                         </p>
                       </div>
                       <HStack>
                         {isSameownerAddress ?
-                         <p className='text-slate-300' fontSize="xl" style={{ color: "rgba(255, 255, 255, 0.90)", padding: "1rem", marginTop: '2rem 0 2rem 0 ' , fontSize:'1.4rem' }} fontWeight={'400'} m={'1'}>
+                         <p className='text-slate-300' fontSize="xl" style={{ color: "#9A9A9A", padding: "1rem", marginTop: '2rem 0 2rem 0 ' , fontSize:'1.4rem' }} fontWeight={'400'} m={'1'}>
                         You are a Owner of this AIFT
                         </p>
                         : 
-                          <Button onClick={sellButtonCLickhandler   } size='lg' colorScheme='green' borderRadius={'4px'} variant={"solid"} fontWeight={'700'}>
+                          <Button onClick={sellButtonCLickhandler   } size='lg' style={{backgroundColor:"##9A9A9A"}} borderRadius={'4px'} variant={"solid"} fontWeight={'700'}>
                           Buy AIFT
                           </Button>
                           }

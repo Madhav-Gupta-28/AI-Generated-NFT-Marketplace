@@ -170,45 +170,45 @@ const SingleNFT = ({ params }) => {
             {showMetamaskAlert && <Alert  variant={'solid'} status={type} className='w-10/12'><AlertIcon />{status}</Alert>}
             {loading ? (
               <Center h={'30vh'}>
-                <Spinner thickness='5px' speed='0.5s' emptyColor='#454545' color='#454545' size='xl' />
+                <Spinner thickness='5px' speed='0.5s' emptyColor='#454545' color='#9A9A9A' size='xl' />
               </Center>
             ) : (
               isClientMounted && (
                 <div style={{    background: "linear-gradient(135deg, #426F4E 0%, #05101A 100%)"      }} className='px-28 py-20'>
-                  <HStack spacing={6} style={{border: '3px solid rgba(255, 255, 255, 0.90)' }} className=' rounded-2xl p-6'>
+                  <HStack spacing={6} style={{border: '3px solid #9A9A9A' }} className=' rounded-2xl p-6'>
                     <div style={{}} className='w-6/12 h-full'>
                       <img
                         className='border-cyan-500 border-2 w-full mx-auto rounded-xl'
                         src={`${image.replace('ipfs://', 'https://nftstorage.link/ipfs/')}`}
                         alt={name}
-                        style={{ maxWidth: '70%', border: '3px solid rgba(255, 255, 255, 0.90) ' }}
+                        style={{ maxWidth: '70%', border: '3px solid #9A9A9A ' }}
                       />
                     </div>
                     <VStack spacing={6} align='stretch' marginLeft={'5rem'}>
                       <div className='details-div'>
-                        <Heading as="h3" m={'1'} size="lg" color={'rgba(255, 255, 255, 0.90)'}>
+                        <Heading as="h3" m={'1'} size="lg" color={'#9A9A9A'}>
                           #{params.id}{' '}
                           <Link target='_blank' style={{ marginLeft: '3px' }} href={`https://ipfs.io/ipfs/${tokenuri}/metadata.json`}>
                             <ExternalLinkIcon fontWeight={'1000'} fontSize={'2rem'} color={"#CCEABB"} />
                           </Link>
                         </Heading>
                         <Heading as="h6" m={'1'} size="md" color={'rgb(209 213 219)'}>
-                          <Text style={{ marginTop: '2rem 0 2rem 0 ', padding: "1rem", display: 'inline', fontWeight: '1000', color: "rgba(255, 255, 255, 0.90)" }}> <span style={{color:"rgba(255, 255, 255, 0.90)"}}>Name:&nbsp;  </span>    {name} </Text>
+                          <Text style={{ marginTop: '2rem 0 2rem 0 ', padding: "1rem", display: 'inline', fontWeight: '1000', color: "rgba(255, 255, 255, 0.90)" }}> <span style={{color:"#9A9A9A"}}>Name:&nbsp;  </span>    {name} </Text>
                         </Heading>
                         {isClientMounted && (
                           <p className='text-slate-300' fontWeight={'700'} m={'1'} fontSize={'xl'}>
 
-                            <Text style={{ display: 'inline', color: "rgba(255, 255, 255, 0.90)", fontWeight: '1000', padding: "1rem", marginTop: '2rem 0 2rem 0 ' }}> <span style={{color:"rgba(255, 255, 255, 0.90)"}}>Description:&nbsp;  </span> {description}</Text>
+                            <Text style={{ display: 'inline', color: "rgba(255, 255, 255, 0.90)", fontWeight: '1000', padding: "1rem", marginTop: '2rem 0 2rem 0 ' }}> <span style={{color:"#9A9A9A"}}>Description:&nbsp;  </span> {description}</Text>
                           </p>
                         )}
                         <p className='text-slate-300' fontSize="xl" style={{ color: "rgba(255, 255, 255, 0.90)", padding: "1rem", marginTop: '2rem 0 2rem 0 ' }} fontWeight={'400'} m={'1'}>
-                        <span style={{color:"rgba(255, 255, 255, 0.90)"}}>Owner:&nbsp;  </span>   {owner}
+                        <span style={{color:"#9A9A9A"}}>Owner:&nbsp;  </span>   {owner}
                         </p>
                       </div>
                       <HStack>
                         {isListed ? (
                           <Text style={{ color: "rgba(255, 255, 255, 0.90)" }} p={'4px'} fontWeight={'600'} fontSize='2xl'>
-                            <span color='white' style={{color:'white'}}>  Price : </span>
+                            <span color='white' style={{color:'#9A9A9A'}}>  Price : </span>
                             {price} Matic
                           </Text>
                         ) : (
@@ -218,7 +218,7 @@ const SingleNFT = ({ params }) => {
                         )}
 
                         {isListed && price > 0 ? (
-                           <Button onClick={() =>{ setIsModalOpen(true) , setrelist(true)}  } size='md' colorScheme='green' borderRadius={'4px'} variant={"solid"} fontWeight={'700'}>
+                           <Button onClick={() =>{ setIsModalOpen(true) , setrelist(true)}  } size='md' style={{backgroundColor:"#50A838" , color:"#fff"}} borderRadius={'4px'} variant={"solid"} fontWeight={'700'}>
                            ReList
                          </Button>
                         ):
@@ -276,9 +276,9 @@ const SingleNFT = ({ params }) => {
               borderRadius="4px"
               boxShadow="0 4px 8px rgba(0, 0, 0, 0.1)"
               onClick={handleModalClick}>
-              <Text style={{ fontSize: '1.2rem', fontWeight: '700' }}>Enter the Price You want to List AIFT at:</Text>
+              <Text style={{ fontSize: '1.2rem', fontWeight: '700' , color:"#9A9A9A" }}>Enter the Price You want to List AIFT at:</Text>
               <Input type='number' required placeholder="Enter price..." onChange={(event) => setpriceTolist(event.target.value)} />
-              <Button onClick={ isReList ?  onReListButtonClick  : onListButtonClick} colorScheme="orange" marginLeft="10px" style={{ margin: "1.2rem 0 10px 0 " }} size={'lg'}>
+              <Button onClick={ isReList ?  onReListButtonClick  : onListButtonClick}  marginLeft="10px" style={{ margin: "1.2rem 0 10px 0 " , backgroundColor:"#50A838" , color:"#fff" }} size={'lg'}>
                 List NFT
               </Button>
             </VStack>
