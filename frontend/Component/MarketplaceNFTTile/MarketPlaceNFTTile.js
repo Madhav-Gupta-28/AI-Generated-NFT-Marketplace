@@ -43,8 +43,8 @@ const MarketplaceNFTTile = ({ tokenURI, proposalid, price }) => {
         objectFit={"contain"}
         alt={name}
       />
-      <div style={{ padding:"0.8 rem" ,  fontSize:'1.2rem' , margin:"0.5rem 0 0 1rem" , color:"#ff8700"}} > <span style={{fontSize:'1.6rem' , marginRight:'0.4rem'}} >{`#${proposalid.toString()}`}</span>  {name}</div>
-      <div style={{ padding:"0.8 rem" ,  fontSize:'1.2rem' , margin:"0.5rem 0 1rem  1rem" , color:"#ff8700"}} >{`${ethers.utils.formatEther(price.toString())}  Matic`} </div>
+      <div style={{ padding:"0.8 rem" ,  fontSize:'1.2rem' , margin:"0.5rem 0 0 1rem" , color:"#fff"}} > <span style={{fontSize:'1.6rem' , marginRight:'0.4rem'}} >{`#${proposalid.toString()}`}</span>  {name}</div>
+      <div style={{ padding:"0.8 rem" ,  fontSize:'1.2rem' , margin:"0.5rem 0 1rem  1rem" , color:"#fff"}} >{`${ethers.utils.formatEther(price.toString())}  Matic`} </div>
     </Link>
    ) : 
     <div></div>

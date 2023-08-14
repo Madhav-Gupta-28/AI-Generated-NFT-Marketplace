@@ -39,7 +39,7 @@ const SingleNFT = ({ params }) => {
       setnftdata(data)
       settokenuri(data.tokenURI);
       setowner(data.owner);
-      const priceinEther  = ethers.utils.formatEther(data.price.toString())
+      const priceinEther  = await  ethers.utils.formatEther(data.price.toString())
       setprice(priceinEther)
       console.log( "coming from getNFTINFO" , owner)
 
@@ -47,10 +47,11 @@ const SingleNFT = ({ params }) => {
         method: 'eth_accounts'
       });
 
-      const account = accounts[0];
+      const account =  accounts[0];
       setconnectedAddress(account)
+      console.log("owner" , owner)
       console.log("account" , account)
-      if(owner === connectedAddress){
+      if(owner === account){
         setisSameownerAddress(true)
       }
 
@@ -75,7 +76,6 @@ const SingleNFT = ({ params }) => {
           console.error('Error fetching metadata:', error);
         }
       };
-    
   
   
     const sellButtonCLickhandler = async() =>{
@@ -83,14 +83,15 @@ const SingleNFT = ({ params }) => {
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         const signer = provider.getSigner()
         const aift = new ethers.Contract(aiftAddress, aiftabi, signer)
-        const tx = await aift.sellNFT(params.id)
+        const finalPrice = ethers.utils.parseEther(price.toString())
+        const tx = await aift.sellNFT(params.id, {value:finalPrice})
         console.log(tx)
 
         const txhash = tx.hash 
 
         signer.provider.on(txhash, (receipt) => {
             console.log('Transaction confirmed:', receipt);
-            setStatus('AIFT Selled Succesfully Will be Soon Reflect In Your Profile Section Soon')
+            setStatus('AIFT Buying Succesfully Will be Soon Reflect In Your Profile!')
             setType('success')
             setShowMetamaskAlert(true)
           });
@@ -160,9 +161,13 @@ const SingleNFT = ({ params }) => {
                         <p className='text-slate-300' fontSize="xl" style={{ color: "#9A9A9A", padding: "1rem", marginTop: '2rem 0 2rem 0 ' }} fontWeight={'400'} m={'1'}>
                          <span style={{color:"#fff"}}>Owner: </span> {owner}
                         </p>
+                      <p className='text-slate-300' fontSize="xl" style={{ color: "#9A9A9A", padding: "1rem", marginTop: '2rem 0 2rem 0 ' }} fontWeight={'400'} m={'1'}>
+                         <span style={{color:"#fff"}}>Price : </span> {price} <span>Matic </span>
+                        </p> *
                       </div>
+                     
                       <HStack>
-                        {isSameownerAddress ?
+                        {isSameownerAddress  ?
                          <p className='text-slate-300' fontSize="xl" style={{ color: "#9A9A9A", padding: "1rem", marginTop: '2rem 0 2rem 0 ' , fontSize:'1.4rem' }} fontWeight={'400'} m={'1'}>
                         You are a Owner of this AIFT
                         </p>

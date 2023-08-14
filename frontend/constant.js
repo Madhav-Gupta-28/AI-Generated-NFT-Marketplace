@@ -1,4 +1,4 @@
-export const aiftAddress = "0x3A9388f0a3aA96f0c7c7f72bE594c3dEd1d303Fe"
+export const aiftAddress = "0x5E21057D551e0071Fd046B7c1Ad5014275E58512"
 
 
 export const aiftabi =  [
