@@ -209,7 +209,7 @@ const SingleNFT = ({ params }) => {
                         {isListed ? (
                           <Text style={{ color: "rgba(255, 255, 255, 0.90)" }} p={'4px'} fontWeight={'600'} fontSize='2xl'>
                             <span color='white' style={{color:'#9A9A9A'}}>  Price : </span>
-                            {price} Matic
+                            {price} Celo
                           </Text>
                         ) : (
                           <Button onClick={() => { setIsModalOpen(true) , setrelist(false)}  } size='lg' colorScheme='orange' borderRadius={'4px'} variant={"solid"} fontWeight={'700'}>

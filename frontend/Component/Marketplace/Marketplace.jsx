@@ -37,8 +37,8 @@ const Marketplace = () => {
     const checkNetwork = async() => {
       const chainId = await window.ethereum.request({ method: 'eth_chainId' });
 
-      if (chainId !== '0x13881') {
-        alert("Please connect to the Mumbai Test Network");
+      if (chainId !== '0xaef3') {
+        alert("Please connect to the Alfajores Testnet to use this Dapp ");
 
         try{
           await window.ethereum.request({

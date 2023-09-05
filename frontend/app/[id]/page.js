@@ -162,7 +162,7 @@ const SingleNFT = ({ params }) => {
                          <span style={{color:"#fff"}}>Owner: </span> {owner}
                         </p>
                       <p className='text-slate-300' fontSize="xl" style={{ color: "#9A9A9A", padding: "1rem", marginTop: '2rem 0 2rem 0 ' }} fontWeight={'400'} m={'1'}>
-                         <span style={{color:"#fff"}}>Price : </span> {price} <span>Matic </span>
+                         <span style={{color:"#fff"}}>Price : </span> {price} <span>Celo </span>
                         </p> *
                       </div>
                      
