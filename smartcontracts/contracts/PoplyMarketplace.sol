@@ -26,7 +26,7 @@ contract  AIFT is  ERC721URIStorage , ReentrancyGuard {
         uint256 id;
         string tokenURI;
         address payable owner;
-        address creator;
+        address  creator;
         uint256 price;
         bool listed;
     }
