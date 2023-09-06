@@ -4,7 +4,7 @@ Live Website URL => https://poply-madhav-gupta-28.vercel.app/
 
 
 
-          THANKS ENJOY The AIFT MARKETPLACE  
+          THANKS ENJOY The Poply MARKETPLACE  
 
 "AIFT" -> It is an Next Generation AI Generated NFT Margketplace. Where Users can Give Description to the AI Prompt. And Then Can Mint the NFT of the Image They are getting from the AI. 
 
