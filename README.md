@@ -1,6 +1,6 @@
-Live Website URL => https://poply-madhav-gupta-28.vercel.app/
+Live Website URL => https://poply.vercel.app/ 
 
-*****   Please connect to Alfajores testnet.  testnet and try to list the nft for under 0.1 celo *****
+*****   Please connect to Mumbai  testnet.  testnet and try to list the nft for under 0.1 matic *****
 
 
 
